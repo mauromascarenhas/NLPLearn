@@ -1,2 +1,3 @@
 # NLPLearn
-Natural Language Processing Toolkit for JavaScript
+
+Natural Language Processing Toolkit for JavaScript.
