@@ -1,5 +1,12 @@
 "use strict";
 
+/**
+ * Basic text tokenizer (word level) based
+ *  on regular expression rules.
+ * It provides support to number removal
+ *  (default setting) and filter for small
+ *  words.
+ */
 class NaiveWordTokenizer {
     
     static #wordSet = "a-zA-ZáàâäãåçéèêëíìîïñóòôöõúùûüýÿæœÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝŸÆŒ_";
@@ -21,9 +28,11 @@ class NaiveWordTokenizer {
     }
 
     /**
-     * 
-     * @param {string} text 
-     * @returns {Array<string>}
+     * Tokenizes the given text/document in
+     *  word level.
+     * @param {string} text - Text/document.
+     * @returns {Array<string>} the tokenized version
+     *  of the given text.
      */
     tokenize(text){
         let res = [];
