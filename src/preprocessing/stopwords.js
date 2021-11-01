@@ -5,7 +5,7 @@ import nltksw from "../nltk-data/stopwords.json";
 
 /**
  * Class which aggregates methods related
- *   to stop word retrieval
+ *   to stop words retrieval.
  */
 export class StopWords {
 
