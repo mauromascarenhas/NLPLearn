@@ -1,5 +1,7 @@
 "use strict";
 
+import { stemmer } from "porter-stemmer";
+
 /**
  * Implementation fo the algorithm for the RSLP Stemmer, as
  *  described in the "A Stemming Algorithm for the Portuguese
@@ -311,6 +313,24 @@ class RSLPStemmer {
     }
 }
 
+/**
+ * Wrapper class for Porter Stemmer implementation
+ *  available at: https://www.npmjs.com/package/porter-stemmer
+ */
+class PorterStemmer{
+
+    /**
+     * Performs the stemming operation for the given word.
+     *  this is the same as "stemmer(word)" function from
+     *  "porter-stemmer" package.
+     * @param {string} word - The word to be stemmed.
+     * @returns {string} a stem.
+     */
+    static stem(word){ return stemmer(word); }
+
+}
+
 export {
-    RSLPStemmer
+    RSLPStemmer,
+    PorterStemmer
 }
