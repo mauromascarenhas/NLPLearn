@@ -44,8 +44,8 @@ function cosine(u, v){
  *   [0, infinity[.
  */
 function euclidean(u, v){
-    let acc;
-    for (let i = 0; o < u.length; ++i)
+    let acc = 0;
+    for (let i = 0; i < u.length; ++i)
         acc += Math.pow(u[i] - v[i], 2);
     return Math.sqrt(acc);
 }

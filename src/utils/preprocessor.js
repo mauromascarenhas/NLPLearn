@@ -214,5 +214,7 @@ class TextProcessor {
 }
 
 export {
+    TextCase,
+    StemmerType,
     TextProcessor
 }

@@ -1,3 +1,1 @@
-import testz from "./test.js";
-
-console.log(typeof testz, testz);
+console.log("TODO: prepare export");
