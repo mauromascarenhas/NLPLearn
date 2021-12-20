@@ -99,8 +99,8 @@ class TextProcessor {
         if (this.tokenize){
             let tokenizer = new NaiveWordTokenizer(this.removeNumbers);
             switch(this.stemmerType){
-                case StemmerType.RSLP: txts = txts.map((t) => tokenizer.tokenize(t).map(RSLPStemmer.stem));
-                case StemmerType.PORTER: txts = txts.map((t) => tokenizer.tokenize(t).map(PorterStemmer.stem));
+                case StemmerType.RSLP: txts = txts.map((t) => tokenizer.tokenize(t).map(RSLPStemmer.stem)); break;
+                case StemmerType.PORTER: txts = txts.map((t) => tokenizer.tokenize(t).map(PorterStemmer.stem)); break;
                 default: txts = txts.map(tokenizer.tokenize); break;
             }
 
@@ -114,7 +114,7 @@ class TextProcessor {
                 if (this.stemmerType === StemmerType.PORTER) stw = stw.map(PorterStemmer.stem);
                 if (this.normCase === TextCase.LOWERCASE) stw = stw.map((t) => t.toLocaleUpperCase());
                 if (this.stripAccents) stw = stw.map(TextProcessor.#removeAccents);
-                txts = txts.map((t) => t.filter((w) => stw.includes(w)));
+                txts = txts.map((t) => t.filter((w) => !stw.includes(w)));
             }
         }
         else {

@@ -2,6 +2,7 @@
 
 import * as prep_util from "../src/utils/preprocessor";
 import { PorterStemmer, RSLPStemmer } from "../src/preprocessing/stemmer";
+import { StopWords } from "../src/preprocessing/stopwords";
 import { NaiveWordTokenizer } from "../src/preprocessing/tokenization";
 import { TFMetrics, IDFMetrics, TextVectorizer} from "../src/preprocessing/vectorizer";
 
@@ -127,6 +128,46 @@ describe("Text vectorization tool", () => {
     });
 });
 
-/**
- * @todo Text preprocessor utility
- */
+describe("Text preprocessor utility", () => {
+    test("TextProcessor - space normalization + uppercase + trim + strip accents", () => {
+        let tp = new prep_util.TextProcessor(true, prep_util.TextCase.UPPERCASE, true, true,
+            false, false, [], prep_util.StemmerType.NONE);
+        expect(tp.fitTransform([
+            "  Just a   regular   test   ",
+            " is it   actually working?",
+            " em português "
+        ])).toEqual([
+            "JUST A REGULAR TEST",
+            "IS IT ACTUALLY WORKING?",
+            "EM PORTUGUES"
+        ]);
+    });
+
+    test("TextProcessor - space normalization + uppercase + strip accents", () => {
+        let tp = new prep_util.TextProcessor(true, prep_util.TextCase.LOWERCASE, false, false,
+            false, false, [], prep_util.StemmerType.NONE);
+        expect(tp.fitTransform([
+            "  just a   regular   test   ",
+            " is it   actually working?",
+            " em português "
+        ])).toEqual([
+            " just a regular test ",
+            " is it actually working?",
+            " em português "
+        ]);
+    });
+
+    test("TextProcessor - space normalization + lowercase + remove numbers + stop list (pt-BR) + RSLP", () => {
+        let tp = new prep_util.TextProcessor(true, prep_util.TextCase.LOWERCASE, false, true,
+            true, true, StopWords.get("pt"), prep_util.StemmerType.RSLP);
+        expect(tp.fitTransform([
+            "  apenas um SiMpLes texto   ",
+            " será que está a funcionar?",
+            " em português "
+        ])).toEqual([
+            ["apen", "simpl", "text"],
+            ["ser", "que", "est", "funcion"],
+            ["portugu"]
+        ]);
+    });
+})
