@@ -84,19 +84,20 @@ class TextVectorizer {
 
         let tf;
         switch(this.#tf){
-            case TFMetrics.RAW: tf = this.#transformRaw(X); break;
-            case TFMetrics.LOG: tf = this.#transformLog(X); break;
-            case TFMetrics.BOOL: tf = this.#transformBool(X); break;
-            case TFMetrics.FREQ: tf = this.#transformFreq(X); break;
+            case TFMetrics.RAW: tf = this.#transformRaw(X_); break;
+            case TFMetrics.LOG: tf = this.#transformLog(X_); break;
+            case TFMetrics.BOOL: tf = this.#transformBool(X_); break;
+            case TFMetrics.FREQ: tf = this.#transformFreq(X_); break;
         }
 
         if (this.#idf === IDFMetrics.NONE) return tf;
 
-        let idf = this.#transformIDF(X, this.#idf === IDFMetrics.SMOOTH);
+        let idf = this.#transformIDF(X_, this.#idf === IDFMetrics.SMOOTH);
         let tfidf = [];
         for (const row of tf){
-            tfidf.push(new Array(row.length));
-            for (const [j, el] of row.entries()) tfidf[i][j] = el * idf[j];
+            let nr = new Array(row.length)
+            for (const [j, el] of row.entries()) nr[j] = el * idf[j];
+            tfidf.push(nr);
         }
         return tfidf;
     }
@@ -118,8 +119,8 @@ class TextVectorizer {
         let tf = new Array(X.length);
         for (let i = 0; i < tf.length; ++i) tf[i] = new Array(this.#vocab.length).fill(0);
         for (let i = 0; i < X.length; ++i)
-            for (const el of X)
-                if (el in this.#vocab_map) tr[i][this.#vocab_map[el]]++;
+            for (const el of X[i])
+                if (el in this.#vocab_map) tf[i][this.#vocab_map[el]]++;
         return tf;
     }
 
@@ -145,8 +146,8 @@ class TextVectorizer {
         let tf = new Array(X.length);
         for (let i = 0; i < tf.length; ++i) tf[i] = new Array(this.#vocab.length).fill(0);
         for (let i = 0; i < X.length; ++i)
-            for (const el of X)
-                if (el in this.#vocab_map) tr[i][this.#vocab_map[el]] = 1;
+            for (const el of X[i])
+                if (el in this.#vocab_map) tf[i][this.#vocab_map[el]] = 1;
         return tf;
     }
 
@@ -160,7 +161,7 @@ class TextVectorizer {
         for (let i = 0; i < tf.length; ++i){
             let sum = 0;
             for (let j = 0; j < tf[i].length; ++j) sum += tf[i][j];
-            for (let j = 0; j < tf[i].length; ++j) tf[i][j] = tf[i][j]/sum;
+            for (let j = 0; j < tf[i].length; ++j) tf[i][j] = tf[i][j] / sum;
         }
         return tf;
     }
@@ -173,7 +174,7 @@ class TextVectorizer {
      */
      #transformIDF(X, smooth){
         let tf_bool = this.#transformBool(X);
-        let n_count = new Array(tf_bool[0].length);
+        let n_count = new Array(tf_bool[0].length).fill(0);
         for (let i = 0; i < tf_bool.length; ++i){
             for (let j = 0; j < tf_bool[i].length; ++j)
                 n_count[j] += tf_bool[i][j];
