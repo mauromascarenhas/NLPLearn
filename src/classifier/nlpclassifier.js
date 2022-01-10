@@ -27,7 +27,7 @@ function safeCos(v1, v2){
     let s1 = 0, s2 = 0;
     for (let i = 0; i < v1.length; ++i) s1 += v1[i];
     for (let i = 0; i < v2.length; ++i) s2 += v2[i];
-    return (s1 && s2) ? cosine(s1, s2) : + !!(s1 || s2);
+    return (s1 && s2) ? cosine(v1, v2) : + !!(s1 || s2);
 }
 
 /**
@@ -123,9 +123,12 @@ class NLPClassifier {
         if (this.#idf === IDFMetrics.NONE) this.#coef = tf;
         else {
             let idf = this.#fitIDF(x, y, this.#idf === IDFMetrics.SMOOTH);
-            for (let i = 0; i < tf.length; ++i)
+            this.#coef = new Array(tf.length);
+            for (let i = 0; i < tf.length; ++i){
+                this.#coef[i] = new Array(tf[i].length);
                 for (let j = 0; j < tf[i].length; ++j)
                     this.#coef[i][j] = tf[i][j] * idf[j];
+            }
         }
 
         this.#isFitted = true;
@@ -145,7 +148,7 @@ class NLPClassifier {
         if (X[0].length != this.#coef[0].length)
             throw new TypeError(`'X' must have at least ${this.#coef.length} features.`);
 
-        let decision = this.applyDecision(this.#transformTest(this.#dist === DistMetrics.COSINE ? safeCos : euclidean));
+        let decision = this.#applyDecision(this.#transformTest(X), this.#dist === DistMetrics.COSINE ? safeCos : euclidean);
         for (let i = 0; i < decision.length; ++i)
             decision[i] = this.classes[decision[i].indexOf(Math.min(...decision[i]))];
         return decision;
@@ -169,7 +172,7 @@ class NLPClassifier {
         if (X[0].length != this.#coef[0].length)
             throw new TypeError(`'X' must have at least ${this.#coef.length} features.`);
 
-        let decision = this.applyDecision(this.#transformTest(this.#dist === DistMetrics.COSINE ? safeCos : euclidean));
+        let decision = this.#applyDecision(this.#transformTest(X), this.#dist === DistMetrics.COSINE ? safeCos : euclidean);
         if (this.#dist === DistMetrics.COSINE){
             for (let i = 0; i < decision.length; ++i){
                 for (let j = 0; j < decision[i].length; ++j)
@@ -199,7 +202,7 @@ class NLPClassifier {
      */
     #fitAvg(x, y){
         let count = new Array(this.#classes.length).fill(0);
-        let coef = new Array(this.classes.length);
+        let coef = new Array(this.#classes.length);
         for (let i = 0; i < coef.length; ++i) coef[i] = new Array(x[i].length).fill(0);
 
         for (let i = 0; i < x.length; ++i){
@@ -223,7 +226,7 @@ class NLPClassifier {
      */
      #fitLog(x, y){
         let count = new Array(this.#classes.length).fill(0);
-        let coef = new Array(this.classes.length);
+        let coef = new Array(this.#classes.length);
         for (let i = 0; i < coef.length; ++i) coef[i] = new Array(x[i].length).fill(0);
 
         for (let i = 0; i < x.length; ++i){
@@ -246,12 +249,12 @@ class NLPClassifier {
      * @returns {Array<Array<number>>} the TF matrix (raw).
      */
      #fitRaw(x, y){ 
-        let coef = new Array(x.length);
-        for (let i = 0; i < x.length; ++i){
-            coef[i] = new Array(x[i].length).fill(0);
+        let coef = new Array(this.#classes.length);
+        for (let i = 0; i < this.#classes.length; ++i) coef[i] = new Array(x[i].length).fill(0);
+
+        for (let i = 0; i < x.length; ++i)
             for (let j = 0; j < x[i].length; ++j)
                 coef[y[i]][j] = coef[y[i]][j] + x[i][j];
-        }
         return coef;
     }
 
@@ -263,12 +266,12 @@ class NLPClassifier {
      * @returns {Array<Array<number>>} the TF matrix (boolean).
      */
      #fitBool(x, y){ 
-        let coef = new Array(x.length);
-        for (let i = 0; i < x.length; ++i){
-            coef[i] = new Array(x[i].length).fill(0);
+        let coef = new Array(this.#classes.length);
+        for (let i = 0; i < this.#classes.length; ++i) coef[i] = new Array(x[i].length).fill(0);
+        
+        for (let i = 0; i < x.length; ++i)
             for (let j = 0; j < x[i].length; ++j)
                 coef[y[i]][j] = +(coef[y[i]][j] + x[i][j] != 0);
-        }
         return coef;
     }
 
@@ -281,7 +284,7 @@ class NLPClassifier {
      */
      #fitFreq(x, y){
         let count = new Array(this.#classes.length).fill(0);
-        let coef = new Array(this.classes.length);
+        let coef = new Array(this.#classes.length);
         for (let i = 0; i < coef.length; ++i) coef[i] = new Array(x[i].length).fill(0);
 
         for (let i = 0; i < x.length; ++i){
@@ -313,11 +316,11 @@ class NLPClassifier {
                 n_count[j] += bool_tf[i][j];
 
         if (smooth)
-            for (let i = 0; i < n_count; ++i)
-                n_count[i] = Math.log((x.length + 1) / (n_count[i] + 1)) + 1;
+            for (let i = 0; i < n_count.length; ++i)
+                n_count[i] = Math.log((bool_tf.length + 1) / (n_count[i] + 1)) + 1;
         else
-            for (let i = 0; i < n_count; ++i)
-                n_count[i] = Math.log(x.length / n_count[i]) + 1;
+            for (let i = 0; i < n_count.length; ++i)
+                n_count[i] = Math.log(bool_tf.length / n_count[i]) + 1;
 
         return n_count;
     }
@@ -333,25 +336,25 @@ class NLPClassifier {
         let m = new Array(X.length);
         switch(this.#mtr){
             case CLFMetrics.LOG:
-                for (i = 0; i < m.length; ++i){
-                    let r = [...X[i].length];
-                    for (j = 0; j < r.length; ++j)
+                for (let i = 0; i < m.length; ++i){
+                    let r = [...X[i]];
+                    for (let j = 0; j < r.length; ++j)
                         r[j] = Math.log(r[j] + 1);
                     m[i] = r;
                 }
                 break;
             case CLFMetrics.BOOL:
-                for (i = 0; i < m.length; ++i){
-                    let r = [...X[i].length];
-                    for (j = 0; j < r.length; ++j) r[j] = !!r[j];
+                for (let i = 0; i < m.length; ++i){
+                    let r = [...X[i]];
+                    for (let j = 0; j < r.length; ++j) r[j] = !!r[j];
                     m[i] = r;
                 }
                 break;
             case CLFMetrics.FREQ:
-                for (i = 0; i < m.length; ++i){
+                for (let i = 0; i < m.length; ++i){
                     let r = [...X[i]];
                     let rs = safeSum(r);
-                    for (j = 0; j < r.length; ++j) r[j] = r[j] / rs;
+                    for (let j = 0; j < r.length; ++j) r[j] = r[j] / rs;
                     m[i] = r;
                 }
                 break;
@@ -376,11 +379,12 @@ class NLPClassifier {
      *  function.
      * @returns {Array<Array<number>>}
      */
-    applyDecision(X, callable){
+    #applyDecision(X, callable){
         let m = new Array(X.length);
         for (let i = 0; i < m.length; ++i){
             let r = new Array(this.#coef.length);
-            for (j = 0; j < r.length; ++j) r[j] = callable(X[i], this.#coef[j]);
+            for (let j = 0; j < r.length; ++j)
+                r[j] = callable(X[i], this.#coef[j]);
             m[i] = r;
         }
         return m;

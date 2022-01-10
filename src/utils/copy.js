@@ -6,8 +6,9 @@
  *   methods. DO NOT use it for cloning complex
  *   objects.
  * 
- * @param {any} obj - The object to be cloned.
- * @returns the object's clone instance
+ * @template T
+ * @param {T} obj - The object to be cloned.
+ * @returns {T} the object's clone instance
  */
 export function deepCopy(obj){
     return JSON.parse(JSON.stringify(obj));
