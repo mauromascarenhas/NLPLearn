@@ -392,7 +392,6 @@ var NLPClassifier = /*#__PURE__*/function () {
      * @param {Array<Array<number>>} x - Document-term matrix.
      * @param {Array<any>} y - Classes (map).
      * @returns {Array<Array<number>>} the TF matrix (average).
-     * @private
      */
 
   }, {

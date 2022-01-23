@@ -1,79 +1,48 @@
 "use strict";
 
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-Object.defineProperty(exports, "Classifier", {
-  enumerable: true,
-  get: function get() {
-    return _nlpclassifier["default"];
-  }
-});
-Object.defineProperty(exports, "Copy", {
-  enumerable: true,
-  get: function get() {
-    return _copy["default"];
-  }
-});
-Object.defineProperty(exports, "Distance", {
-  enumerable: true,
-  get: function get() {
-    return _distance["default"];
-  }
-});
-Object.defineProperty(exports, "NLTKStopWords", {
-  enumerable: true,
-  get: function get() {
-    return _stopwords["default"];
-  }
-});
-Object.defineProperty(exports, "Preprocessor", {
-  enumerable: true,
-  get: function get() {
-    return _preprocessor["default"];
-  }
-});
-Object.defineProperty(exports, "Stemmer", {
-  enumerable: true,
-  get: function get() {
-    return _stemmer["default"];
-  }
-});
-Object.defineProperty(exports, "StopWords", {
-  enumerable: true,
-  get: function get() {
-    return _stopwords2["default"];
-  }
-});
-Object.defineProperty(exports, "Tokenization", {
-  enumerable: true,
-  get: function get() {
-    return _tokenization["default"];
-  }
-});
-Object.defineProperty(exports, "Vectorizer", {
-  enumerable: true,
-  get: function get() {
-    return _vectorizer["default"];
-  }
-});
+exports.vectorizer = exports.tokenization = exports.stopWords = exports.stemmer = exports.preprocessor = exports.nltksw = exports.distance = exports.copy = exports.classifier = void 0;
 
-var _copy = _interopRequireDefault(require("./utils/copy"));
+var copy = _interopRequireWildcard(require("./utils/copy"));
 
-var _distance = _interopRequireDefault(require("./utils/distance"));
+exports.copy = copy;
 
-var _preprocessor = _interopRequireDefault(require("./utils/preprocessor"));
+var distance = _interopRequireWildcard(require("./utils/distance"));
 
-var _nlpclassifier = _interopRequireDefault(require("./classifier/nlpclassifier"));
+exports.distance = distance;
 
-var _stopwords = _interopRequireDefault(require("./nltk-data/stopwords.json"));
+var preprocessor = _interopRequireWildcard(require("./utils/preprocessor"));
 
-var _stemmer = _interopRequireDefault(require("./preprocessing/stemmer"));
+exports.preprocessor = preprocessor;
 
-var _stopwords2 = _interopRequireDefault(require("./preprocessing/stopwords"));
+var classifier = _interopRequireWildcard(require("./classifier/nlpclassifier"));
 
-var _tokenization = _interopRequireDefault(require("./preprocessing/tokenization"));
+exports.classifier = classifier;
 
-var _vectorizer = _interopRequireDefault(require("./preprocessing/vectorizer"));
+var nltksw = _interopRequireWildcard(require("./nltk-data/stopwords.json"));
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+exports.nltksw = nltksw;
+
+var stemmer = _interopRequireWildcard(require("./preprocessing/stemmer"));
+
+exports.stemmer = stemmer;
+
+var stopWords = _interopRequireWildcard(require("./preprocessing/stopwords"));
+
+exports.stopWords = stopWords;
+
+var tokenization = _interopRequireWildcard(require("./preprocessing/tokenization"));
+
+exports.tokenization = tokenization;
+
+var vectorizer = _interopRequireWildcard(require("./preprocessing/vectorizer"));
+
+exports.vectorizer = vectorizer;
+
+function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
+
+function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { "default": obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj["default"] = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
