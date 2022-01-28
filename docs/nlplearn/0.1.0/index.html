@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Home | NLPLearn</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    
+
+    
+
+
+
+    
+
+
+
+
+
+
+
+
+
+    
+
+
+    <section>
+        <article><h1>NLPLearn</h1>
+<p>Natural Language Processing Toolkit for JavaScript.</p>
+<h2>About NLPLearn</h2>
+<p>...</p>
+<h2>Usage</h2>
+<p>The objective of this library is to be used for different purposes and contexts. So, it has been made available in three different versions:</p>
+<ul>
+<li>ES5 modules + ES6 classes: for newer projects (with better intellisense support);</li>
+<li>CommonJS: The same as the above, but transpiled for compatibility with older projects;</li>
+<li>Browser: Browser-compatible Vanilla JS code (debugging + minified versions).</li>
+</ul>
+<h3>ES5 Modules (+ES6 classes)</h3>
+<p>Although the &quot;distribution&quot; is in CommonJS, it is possible to import components which have been written in newer syntax. All you have to do is to add &quot;/src&quot; to your import:</p>
+<pre><code>import NLPLearn from &quot;nlplearn/src&quot;
+</code></pre>
+<p>Should you want to use object destructing:</p>
+<pre><code>import { stemmer } from &quot;nlplearn/src&quot;;
+const { PorterStemmer } = stemmer;
+// must return &quot;close&quot;
+console.log(PorterStemmer.stem(&quot;closing&quot;));
+</code></pre>
+<h3>CommonJS</h3>
+<p>Since the &quot;distrubution&quot; version of this library is already in CommonJS, all you have to do to access its modules is the following:</p>
+<pre><code>const NLPLearn = require(&quot;nlplearn&quot;);
+// result must be 1
+console.log(NLPLearn.distance.cosine([0, 1], [1, 0]));
+</code></pre>
+<p>Should you want to use object destructing:</p>
+<pre><code>const { distance } = require(&quot;nlplearn&quot;);
+// result must be 1
+console.log(distance.cosine([0, 1], [1, 0]));
+
+// in the following snippet, the result must be 1 as well
+const { cosine } = distance;
+console.log(cosine([0, 1], [1, 0]));
+</code></pre>
+<h3>Browser (Vanilla JS)</h3>
+<p>The usage in browser is quite similar to CommonJS (thanks to Babel + Browserify). However, you must copy a version of nlplearn available in <a href="https://github.com/mauromascarenhas/NLPLearn/tree/main/browser-dist">the library repository</a> (unfortunately, there is no CDN available yet) to your server and add the following tag to the <code>&lt;head&gt;...&lt;/head&gt;</code> session of your website:</p>
+<pre><code>&lt;script type=&quot;application/javascript&quot; src=&quot;./path/to/nlplearn/nlplearn-&lt;version&gt;[.min].js&quot; defer&gt;&lt;/script&gt;
+</code></pre>
+<p>Available versions:</p>
+<ul>
+<li>Regular: mostly used for debugging purposes;</li>
+<li>Minified (ends with &quot;.min.js&quot;): meant for use in production - smaller size.</li>
+</ul>
+<h2>Build</h2>
+<p>Should you want to use this library with recent JS versions (ES6+), the build step will not be necessary. However, if you need to use/integrate with legacy code (CommonJS) or get browser supported versions, everything you have to do is to use one of the following commands:</p>
+<pre><code>&gt; npm run build # Builds for CommonJS and Browser;
+&gt; npm run build:dist # Builds for CommonJS, only;
+&gt; npm run build:browser # Generates a browser-friendly code (must build for CommonJS before);
+&gt; npm run build:browser:reg # Generates a browser-friendly code: for debugging purposes;
+&gt; npm run build:browser:min # Generates a minified browser-friendly code: for production environment.
+</code></pre>
+<h3>Tests</h3>
+<p>The tests files are located into <code>./test</code> directory. So, evertything you have to do so as to perform the automated (unitary) tests is to run:</p>
+<pre><code>&gt; npm run test
+</code></pre>
+<h2>Docs</h2>
+<p>Despite the static documentation, the source code is completely typed, providing a greater support for code intellisense (tested with JS, only).</p>
+<p>The HTML documentation for this library can be accessed <a href="./">here</a>. It is important to keep in mind that new set of documentation pages is generated for each tagged version. Check the next subtopic so as to learn how to build a &quot;preview&quot; version yourself.</p>
+<h3>Docs generation</h3>
+<p>It is possible to generate the code documentation for the current version by running <code>npm run docs:gen</code> in development environment.</p>
+<p>Finally, should you want to open it in browser, there is a convenience script which creates a local server and opens the generated documentation in browser:</p>
+<pre><code>&gt; npm run docs:serve
+</code></pre>
+<h2>Sources and development</h2>
+<p>You can access the source code and contribute to the development of this library through our <a href="https://github.com/mauromascarenhas/NLPLearn">repository available at Github</a>. It is available under Mozilla Public Licence v2.0 (<a href="https://www.mozilla.org/en-US/MPL/2.0/">MPL-2.0</a>).</p></article>
+    </section>
+
+
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-classifier.html">classifier</a></li><li><a href="module-copy.html">copy</a></li><li><a href="module-distance.html">distance</a></li><li><a href="module-preprocessor.html">preprocessor</a></li><li><a href="module-stemmer.html">stemmer</a></li><li><a href="module-stopwords.html">stopwords</a></li><li><a href="module-tokenization.html">tokenization</a></li><li><a href="module-vectorizer.html">vectorizer</a></li></ul><h3>Classes</h3><ul><li><a href="module-classifier-NLPClassifier.html">NLPClassifier</a></li><li><a href="module-preprocessor-TextProcessor.html">TextProcessor</a></li><li><a href="module-stemmer-PorterStemmer.html">PorterStemmer</a></li><li><a href="module-stemmer-RSLPStemmer.html">RSLPStemmer</a></li><li><a href="module-stopwords.StopWords.html">StopWords</a></li><li><a href="module-tokenization-NaiveWordTokenizer.html">NaiveWordTokenizer</a></li><li><a href="module-vectorizer-TextVectorizer.html">TextVectorizer</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation for nlplearn:0.1.0 generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.10</a> on Fri Jan 28 2022 20:04:41 GMT-0300 (Horário Padrão de Brasília)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

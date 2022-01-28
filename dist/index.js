@@ -5,43 +5,43 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.vectorizer = exports.tokenization = exports.stopWords = exports.stemmer = exports.preprocessor = exports.nltksw = exports.distance = exports.copy = exports.classifier = void 0;
+exports.vectorizer = exports.tokenization = exports.stopwords = exports.stemmer = exports.preprocessor = exports.nltksw = exports.distance = exports.copy = exports.classifier = void 0;
 
-var copy = _interopRequireWildcard(require("./utils/copy"));
+var _copy = _interopRequireWildcard(require("./utils/copy"));
 
-exports.copy = copy;
+exports.copy = _copy;
 
-var distance = _interopRequireWildcard(require("./utils/distance"));
+var _distance = _interopRequireWildcard(require("./utils/distance"));
 
-exports.distance = distance;
+exports.distance = _distance;
 
-var preprocessor = _interopRequireWildcard(require("./utils/preprocessor"));
+var _preprocessor = _interopRequireWildcard(require("./utils/preprocessor"));
 
-exports.preprocessor = preprocessor;
+exports.preprocessor = _preprocessor;
 
-var classifier = _interopRequireWildcard(require("./classifier/nlpclassifier"));
+var _classifier = _interopRequireWildcard(require("./classifier/nlpclassifier"));
 
-exports.classifier = classifier;
+exports.classifier = _classifier;
 
-var nltksw = _interopRequireWildcard(require("./nltk-data/stopwords.json"));
+var _nltksw = _interopRequireWildcard(require("./nltk-data/stopwords.json"));
 
-exports.nltksw = nltksw;
+exports.nltksw = _nltksw;
 
-var stemmer = _interopRequireWildcard(require("./preprocessing/stemmer"));
+var _stemmer = _interopRequireWildcard(require("./preprocessing/stemmer"));
 
-exports.stemmer = stemmer;
+exports.stemmer = _stemmer;
 
-var stopWords = _interopRequireWildcard(require("./preprocessing/stopwords"));
+var _stopwords = _interopRequireWildcard(require("./preprocessing/stopwords"));
 
-exports.stopWords = stopWords;
+exports.stopwords = _stopwords;
 
-var tokenization = _interopRequireWildcard(require("./preprocessing/tokenization"));
+var _vectorizer = _interopRequireWildcard(require("./preprocessing/vectorizer"));
 
-exports.tokenization = tokenization;
+exports.vectorizer = _vectorizer;
 
-var vectorizer = _interopRequireWildcard(require("./preprocessing/vectorizer"));
+var _tokenization = _interopRequireWildcard(require("./preprocessing/tokenization"));
 
-exports.vectorizer = vectorizer;
+exports.tokenization = _tokenization;
 
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
 

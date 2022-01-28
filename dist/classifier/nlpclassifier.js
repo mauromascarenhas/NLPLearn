@@ -1,4 +1,8 @@
 "use strict";
+/**
+ * Provides classification tools for vectorized texts.
+ * @module classifier
+ */
 
 Object.defineProperty(exports, "__esModule", {
   value: true

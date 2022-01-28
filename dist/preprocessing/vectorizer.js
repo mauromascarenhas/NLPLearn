@@ -1,4 +1,8 @@
 "use strict";
+/**
+ * Text-vectorization utilities.
+ * @module vectorizer
+ */
 
 Object.defineProperty(exports, "__esModule", {
   value: true

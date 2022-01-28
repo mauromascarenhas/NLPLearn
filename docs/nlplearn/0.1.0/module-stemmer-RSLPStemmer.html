@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Class: RSLPStemmer | NLPLearn</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Class: RSLPStemmer</h1>
+
+    
+
+
+
+
+<section>
+
+<header>
+    
+        <h2><span class="attribs"><span class="type-signature"></span></span>
+            <span class="ancestors"><a href="module-stemmer.html">stemmer</a>~</span>RSLPStemmer<span class="signature">()</span><span class="type-signature"></span></h2>
+        
+            <div class="class-description"><p>Implementation fo the algorithm for the RSLP Stemmer, as
+described in the &quot;A Stemming Algorithm for the Portuguese
+Language&quot; paper.</p>
+<p>In Proceedings of the SPIRE conference, Laguna de Sal Raphael,
+Chile, November 13-15, 2001, written by Viviane Moreira
+Orengo and Christian Huyck</p>
+<p>More info: <a href="http://www.inf.ufrgs.br/~viviane/rslp/index.htm">http://www.inf.ufrgs.br/~viviane/rslp/index.htm</a>.</p>
+<p>Datasets from: <a href="https://www.kaggle.com/nltkdata/rslp-stemmer">https://www.kaggle.com/nltkdata/rslp-stemmer</a>.</p>
+<p>Source: <a href="https://www.andrewsaguiar.com/blog/2019/09/12/text-search-implementing-portuguese-stemmer">https://www.andrewsaguiar.com/blog/2019/09/12/text-search-implementing-portuguese-stemmer</a>.</p></div>
+        
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+
+    
+    <h2>Constructor</h2>
+    
+
+    
+    <h4 class="name" id="RSLPStemmer"><span class="type-signature"></span>new RSLPStemmer<span class="signature">()</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="preprocessing_stemmer.js.html">preprocessing/stemmer.js</a>, <a href="preprocessing_stemmer.js.html#line25">line 25</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id=""><span class="type-signature"></span><span class="signature">(word, rules)</span><span class="type-signature"> &rarr; {string}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Applies rule for the given word</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>word</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>word (or part) to be stemmed.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>rules</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array:<a href="module-preprocessor-TextProcessor.html"></a>.&lt;Array:<a href="module-preprocessor-TextProcessor.html"></a>.&lt;any:<a href="module-preprocessor-TextProcessor.html"></a>>></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Array of rules.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="preprocessing_stemmer.js.html">preprocessing/stemmer.js</a>, <a href="preprocessing_stemmer.js.html#line315">line 315</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>word part (after applying rule).</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">string</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id=".stem"><span class="type-signature">(static) </span>stem<span class="signature">(word)</span><span class="type-signature"> &rarr; {string}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Performs the stemming operation for the given word.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>word</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The word to be stemmed.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="preprocessing_stemmer.js.html">preprocessing/stemmer.js</a>, <a href="preprocessing_stemmer.js.html#line292">line 292</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>a stem.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">string</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-classifier.html">classifier</a></li><li><a href="module-copy.html">copy</a></li><li><a href="module-distance.html">distance</a></li><li><a href="module-preprocessor.html">preprocessor</a></li><li><a href="module-stemmer.html">stemmer</a></li><li><a href="module-stopwords.html">stopwords</a></li><li><a href="module-tokenization.html">tokenization</a></li><li><a href="module-vectorizer.html">vectorizer</a></li></ul><h3>Classes</h3><ul><li><a href="module-classifier-NLPClassifier.html">NLPClassifier</a></li><li><a href="module-preprocessor-TextProcessor.html">TextProcessor</a></li><li><a href="module-stemmer-PorterStemmer.html">PorterStemmer</a></li><li><a href="module-stemmer-RSLPStemmer.html">RSLPStemmer</a></li><li><a href="module-stopwords.StopWords.html">StopWords</a></li><li><a href="module-tokenization-NaiveWordTokenizer.html">NaiveWordTokenizer</a></li><li><a href="module-vectorizer-TextVectorizer.html">TextVectorizer</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation for nlplearn:0.1.0 generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.10</a> on Fri Jan 28 2022 20:04:41 GMT-0300 (Horário Padrão de Brasília)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

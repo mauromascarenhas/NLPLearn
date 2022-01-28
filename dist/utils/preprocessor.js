@@ -1,4 +1,9 @@
 "use strict";
+/**
+ * Provides text preprocessing utilities for
+ *  data-processing pipelines.
+ * @module preprocessor
+ */
 
 Object.defineProperty(exports, "__esModule", {
   value: true

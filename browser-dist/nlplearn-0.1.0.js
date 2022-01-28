@@ -1,5 +1,9 @@
 require=(function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
 "use strict";
+/**
+ * Provides classification tools for vectorized texts.
+ * @module classifier
+ */
 
 Object.defineProperty(exports, "__esModule", {
   value: true
@@ -668,43 +672,43 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.vectorizer = exports.tokenization = exports.stopWords = exports.stemmer = exports.preprocessor = exports.nltksw = exports.distance = exports.copy = exports.classifier = void 0;
+exports.vectorizer = exports.tokenization = exports.stopwords = exports.stemmer = exports.preprocessor = exports.nltksw = exports.distance = exports.copy = exports.classifier = void 0;
 
-var copy = _interopRequireWildcard(require("./utils/copy"));
+var _copy = _interopRequireWildcard(require("./utils/copy"));
 
-exports.copy = copy;
+exports.copy = _copy;
 
-var distance = _interopRequireWildcard(require("./utils/distance"));
+var _distance = _interopRequireWildcard(require("./utils/distance"));
 
-exports.distance = distance;
+exports.distance = _distance;
 
-var preprocessor = _interopRequireWildcard(require("./utils/preprocessor"));
+var _preprocessor = _interopRequireWildcard(require("./utils/preprocessor"));
 
-exports.preprocessor = preprocessor;
+exports.preprocessor = _preprocessor;
 
-var classifier = _interopRequireWildcard(require("./classifier/nlpclassifier"));
+var _classifier = _interopRequireWildcard(require("./classifier/nlpclassifier"));
 
-exports.classifier = classifier;
+exports.classifier = _classifier;
 
-var nltksw = _interopRequireWildcard(require("./nltk-data/stopwords.json"));
+var _nltksw = _interopRequireWildcard(require("./nltk-data/stopwords.json"));
 
-exports.nltksw = nltksw;
+exports.nltksw = _nltksw;
 
-var stemmer = _interopRequireWildcard(require("./preprocessing/stemmer"));
+var _stemmer = _interopRequireWildcard(require("./preprocessing/stemmer"));
 
-exports.stemmer = stemmer;
+exports.stemmer = _stemmer;
 
-var stopWords = _interopRequireWildcard(require("./preprocessing/stopwords"));
+var _stopwords = _interopRequireWildcard(require("./preprocessing/stopwords"));
 
-exports.stopWords = stopWords;
+exports.stopwords = _stopwords;
 
-var tokenization = _interopRequireWildcard(require("./preprocessing/tokenization"));
+var _vectorizer = _interopRequireWildcard(require("./preprocessing/vectorizer"));
 
-exports.tokenization = tokenization;
+exports.vectorizer = _vectorizer;
 
-var vectorizer = _interopRequireWildcard(require("./preprocessing/vectorizer"));
+var _tokenization = _interopRequireWildcard(require("./preprocessing/tokenization"));
 
-exports.vectorizer = vectorizer;
+exports.tokenization = _tokenization;
 
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
 
@@ -737,6 +741,10 @@ module.exports={
 }
 },{}],4:[function(require,module,exports){
 "use strict";
+/**
+ * Tools for word truncation (stemming).
+ * @module stemmer
+ */
 
 Object.defineProperty(exports, "__esModule", {
   value: true
@@ -776,9 +784,11 @@ function _classCheckPrivateStaticAccess(receiver, classConstructor) { if (receiv
  *  Chile, November 13-15, 2001, written by Viviane Moreira
  *  Orengo and Christian Huyck
  * 
- * More info: http://www.inf.ufrgs.br/~viviane/rslp/index.htm
- * Datasets from: https://www.kaggle.com/nltkdata/rslp-stemmer
- * Source: https://www.andrewsaguiar.com/blog/2019/09/12/text-search-implementing-portuguese-stemmer 
+ * More info: {@link http://www.inf.ufrgs.br/~viviane/rslp/index.htm}.
+ * 
+ * Datasets from: {@link https://www.kaggle.com/nltkdata/rslp-stemmer}.
+ * 
+ * Source: {@link https://www.andrewsaguiar.com/blog/2019/09/12/text-search-implementing-portuguese-stemmer}.
  */
 var RSLPStemmer = /*#__PURE__*/function () {
   function RSLPStemmer() {
@@ -822,7 +832,7 @@ var RSLPStemmer = /*#__PURE__*/function () {
 }();
 /**
  * Wrapper class for Porter Stemmer implementation
- *  available at: https://www.npmjs.com/package/porter-stemmer
+ *  available at: {@link https://www.npmjs.com/package/porter-stemmer}
  */
 
 
@@ -901,6 +911,10 @@ var PorterStemmer = /*#__PURE__*/function () {
 exports.PorterStemmer = PorterStemmer;
 },{"porter-stemmer":11}],5:[function(require,module,exports){
 "use strict";
+/**
+ * Stopwords datasets.
+ * @module stopwords
+ */
 
 Object.defineProperty(exports, "__esModule", {
   value: true
@@ -939,7 +953,7 @@ var StopWords = /*#__PURE__*/function () {
      * 
      * @param {string} lang - ISO language code.
      * @param {string} source - Stop list source. Valid
-     *   values are either "NLTK" or "ISO" (default).
+     *   values are either "NLTK" (default) or "ISO".
      * @returns {Array<string>} the stop words array
      *   for the given language, or undefined, if not
      *   found.
@@ -956,6 +970,11 @@ var StopWords = /*#__PURE__*/function () {
 exports.StopWords = StopWords;
 },{"../nltk-data/stopwords.json":3,"stopwords-iso":12}],6:[function(require,module,exports){
 "use strict";
+/**
+ * Text-tokenization utilities.
+ * @module tokenization
+ */
+
 /**
  * Basic text tokenizer (word level) based
  *  on regular expression rules.
@@ -1079,6 +1098,10 @@ var _digitSet = {
 };
 },{}],7:[function(require,module,exports){
 "use strict";
+/**
+ * Text-vectorization utilities.
+ * @module vectorizer
+ */
 
 Object.defineProperty(exports, "__esModule", {
   value: true
@@ -1610,6 +1633,11 @@ function _checkTokenList(arr) {
 },{"../utils/copy":8}],8:[function(require,module,exports){
 "use strict";
 /**
+ * Provites utility methods for object-cloning operations.
+ * @module copy
+ */
+
+/**
  * Creates a deep copy of a simple JavaScript
  *   object through js's builtin JSON stringify/parse
  *   methods. DO NOT use it for cloning complex
@@ -1630,6 +1658,11 @@ function deepCopy(obj) {
 }
 },{}],9:[function(require,module,exports){
 "use strict";
+/**
+ * Provides distance functions for arrays.
+ * @module distance
+ */
+
 /**
  * Calculates the cosine distance between the
  *   vectors u and v accordingly to the given
@@ -1701,6 +1734,7 @@ function euclidean(u, v) {
  *   formulae:
  *   
  *   A = AS_SET(u)
+ * 
  *   B = AS_SET(v)
  * 
  *   jacc_d(u,v) = 1 - (INTERSECT(A,B) / 
@@ -1733,6 +1767,11 @@ function jaccard(u, v) {
 }
 },{}],10:[function(require,module,exports){
 "use strict";
+/**
+ * Provides text preprocessing utilities for
+ *  data-processing pipelines.
+ * @module preprocessor
+ */
 
 Object.defineProperty(exports, "__esModule", {
   value: true
