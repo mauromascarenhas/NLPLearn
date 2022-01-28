@@ -6,10 +6,15 @@
   "type": "module",
   "scripts": {
     "build": "npm run build:dist && npm run build:browser",
-    "build:dist": "babel src -d dist --copy-files",
+    "build:dist": "npm run clean:dist && babel src -d dist --copy-files",
     "build:browser": "npm run build:browser:reg && npm run build:browser:min",
-    "build:browser:reg": "cross-var browserify -r ./index.js:nlplearn -o browser-dist/nlplearn-$npm_package_version.js",
-    "build:browser:min": "cross-var browserify -r ./index.js:nlplearn -o browser-dist/nlplearn-$npm_package_version.min.js -g uglifyify",
+    "build:browser:reg": "npm run clean:browser:reg && cross-var browserify -r ./index.js:nlplearn -o ./browser-dist/nlplearn-$npm_package_version.js",
+    "build:browser:min": "npm run clean:browser:min && cross-var browserify -r ./index.js:nlplearn -o ./browser-dist/nlplearn-$npm_package_version.min.js -g uglifyify",
+    "clean": "npm run clean:dist && npm run clean:browser",
+    "clean:dist": "shx rm -rf ./dist",
+    "clean:browser": "npm run clean:browser:reg && npm run clean:browser:min",
+    "clean:browser:reg": "shx rm -f ./browser-dist/nlplearn-$npm_package_version.js",
+    "clean:browser:min": "shx rm -f ./browser-dist/nlplearn-$npm_package_version.min.js",
     "docs:gen": "cross-var jsdoc -c ./.jsdoc.conf.json -P ./package.json -R ./README.md -q \"pname=$npm_package_name&pversion=$npm_package_version\"",
     "docs:serve": "cross-var http-server ./docs/$npm_package_name/$npm_package_version -o",
     "test": "jest"
@@ -36,6 +41,7 @@
     "http-server": "^14.1.0",
     "jest": "^27.4.5",
     "jsdoc": "^3.5.5",
+    "shx": "^0.3.4",
     "uglifyify": "^5.0.2"
   }
 }

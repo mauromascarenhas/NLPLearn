@@ -74,12 +74,27 @@ tt, code, kbd, samp {
     width: 70%;
 }
 
+article h1 {
+    margin-left: 0;
+}
+
 article dl {
     margin-bottom: 40px;
 }
 
 article img {
   max-width: 100%;
+}
+
+article pre {
+    padding: 20px;
+    border-radius: 4px;
+    background-color: aliceblue;
+}
+
+article pre code {
+    padding-left: 0;
+    background-color: inherit;
 }
 
 section
@@ -331,6 +346,11 @@ tr > th:last-child { border-right: 1px solid #ddd; }
   -moz-user-select: text;
   -ms-user-select: text;
   user-select: text;
+}
+
+code {
+    padding: 4px 8px;
+    background-color: aliceblue;
 }
 
 .params .name, .props .name, .name code {

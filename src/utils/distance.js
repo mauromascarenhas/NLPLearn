@@ -1,6 +1,11 @@
 "use strict";
 
 /**
+ * Provides distance functions for arrays.
+ * @module distance
+ */
+
+/**
  * Calculates the cosine distance between the
  *   vectors u and v accordingly to the given
  *   formula:
@@ -56,6 +61,7 @@ function euclidean(u, v){
  *   formulae:
  *   
  *   A = AS_SET(u)
+ * 
  *   B = AS_SET(v)
  * 
  *   jacc_d(u,v) = 1 - (INTERSECT(A,B) / 

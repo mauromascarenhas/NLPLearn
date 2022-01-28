@@ -16,9 +16,11 @@ import { stemmer } from "porter-stemmer";
  *  Chile, November 13-15, 2001, written by Viviane Moreira
  *  Orengo and Christian Huyck
  * 
- * More info: http://www.inf.ufrgs.br/~viviane/rslp/index.htm
- * Datasets from: https://www.kaggle.com/nltkdata/rslp-stemmer
- * Source: https://www.andrewsaguiar.com/blog/2019/09/12/text-search-implementing-portuguese-stemmer 
+ * More info: {@link http://www.inf.ufrgs.br/~viviane/rslp/index.htm}.
+ * 
+ * Datasets from: {@link https://www.kaggle.com/nltkdata/rslp-stemmer}.
+ * 
+ * Source: {@link https://www.andrewsaguiar.com/blog/2019/09/12/text-search-implementing-portuguese-stemmer}.
  */
 class RSLPStemmer {
 
@@ -320,7 +322,7 @@ class RSLPStemmer {
 
 /**
  * Wrapper class for Porter Stemmer implementation
- *  available at: https://www.npmjs.com/package/porter-stemmer
+ *  available at: {@link https://www.npmjs.com/package/porter-stemmer}
  */
 class PorterStemmer{
 
