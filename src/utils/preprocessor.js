@@ -1,5 +1,11 @@
 "use strict";
 
+/**
+ * Provides text preprocessing utilities for
+ *  data-processing pipelines.
+ * @module preprocessor
+ */
+
 import { NaiveWordTokenizer } from "../preprocessing/tokenization"
 import { RSLPStemmer, PorterStemmer } from "../preprocessing/stemmer"
 

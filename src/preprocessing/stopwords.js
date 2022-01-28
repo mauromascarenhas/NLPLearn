@@ -1,5 +1,10 @@
 "use strict";
 
+/**
+ * Stopwords datasets.
+ * @module stopwords
+ */
+
 import isosw from "stopwords-iso";
 import nltksw from "../nltk-data/stopwords.json";
 

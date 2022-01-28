@@ -1,26 +1,14 @@
 "use strict";
 
-import * as copy from "./utils/copy";
-import * as distance from "./utils/distance";
-import * as preprocessor from "./utils/preprocessor";
+export * as copy from "./utils/copy";
+export * as distance from "./utils/distance";
+export * as preprocessor from "./utils/preprocessor";
 
-import * as classifier from "./classifier/nlpclassifier";
+export * as classifier from "./classifier/nlpclassifier";
 
-import * as nltksw from "./nltk-data/stopwords.json";
+export * as nltksw from "./nltk-data/stopwords.json";
 
-import * as stemmer from "./preprocessing/stemmer";
-import * as stopwords from "./preprocessing/stopwords";
-import * as tokenization from "./preprocessing/tokenization";
-import * as vectorizer from "./preprocessing/vectorizer";
-
-export {
-    copy,
-    nltksw,
-    distance,
-    preprocessor,
-    classifier,
-    stemmer,
-    stopwords,
-    tokenization,
-    vectorizer
-}
+export * as stemmer from "./preprocessing/stemmer";
+export * as stopwords from "./preprocessing/stopwords";
+export * as vectorizer from "./preprocessing/vectorizer";
+export * as tokenization from "./preprocessing/tokenization";

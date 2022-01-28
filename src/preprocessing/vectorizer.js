@@ -1,5 +1,10 @@
 "use strict";
 
+/**
+ * Text-vectorization utilities.
+ * @module vectorizer
+ */
+
 import { deepCopy } from "../utils/copy";
 
 /**

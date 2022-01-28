@@ -1,5 +1,10 @@
 "use strict";
 
+/**
+ * Provides classification tools for vectorized texts.
+ * @module classifier
+ */
+
 import { deepCopy } from "../utils/copy";
 import { cosine, euclidean } from "../utils/distance";
 import { TFMetrics, IDFMetrics } from "../preprocessing/vectorizer"

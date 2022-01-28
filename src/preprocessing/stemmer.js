@@ -1,5 +1,10 @@
 "use strict";
 
+/**
+ * Tools for word truncation (stemming).
+ * @module stemmer
+ */
+
 import { stemmer } from "porter-stemmer";
 
 /**

@@ -1,6 +1,11 @@
 "use strict";
 
 /**
+ * Text-tokenization utilities.
+ * @module tokenization
+ */
+
+/**
  * Basic text tokenizer (word level) based
  *  on regular expression rules.
  * It provides support to number removal

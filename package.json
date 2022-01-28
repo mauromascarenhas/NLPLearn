@@ -5,16 +5,20 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "browserify": "npm run browserify:reg && npm run browserify:min",
-    "browserify:min": "cross-var browserify -r ./index.js:nlplearn -o browser-dist/nlplearn-$npm_package_version.min.js -g uglifyify",
-    "browserify:reg": "cross-var browserify -r ./index.js:nlplearn -o browser-dist/nlplearn-$npm_package_version.js",
-    "gendocs": "jsdoc -c ./.jsdoc.conf.json",
-    "build": "babel src -d dist --copy-files",
+    "build": "npm run build:dist && npm run build:browser",
+    "build:dist": "babel src -d dist --copy-files",
+    "build:browser": "npm run build:browser:reg && npm run build:browser:min",
+    "build:browser:reg": "cross-var browserify -r ./index.js:nlplearn -o browser-dist/nlplearn-$npm_package_version.js",
+    "build:browser:min": "cross-var browserify -r ./index.js:nlplearn -o browser-dist/nlplearn-$npm_package_version.min.js -g uglifyify",
+    "docs:gen": "cross-var jsdoc -c ./.jsdoc.conf.json -P ./package.json -R ./README.md -q \"pname=$npm_package_name&pversion=$npm_package_version\"",
+    "docs:serve": "cross-var http-server ./docs/$npm_package_name/$npm_package_version -o",
     "test": "jest"
   },
   "keywords": [
     "nlp",
-    "nlplearn"
+    "nlplearn",
+    "natural language",
+    "natural language processing"
   ],
   "author": "Mauro Mascarenhas de Araújo",
   "license": "MPL-2.0",
@@ -29,6 +33,7 @@
     "babel-jest": "^27.4.5",
     "browserify": "^17.0.0",
     "cross-var": "^1.1.0",
+    "http-server": "^14.1.0",
     "jest": "^27.4.5",
     "jsdoc": "^3.5.5",
     "uglifyify": "^5.0.2"
