@@ -16,7 +16,7 @@ The objective of this library is to be used for different purposes and contexts.
 - CommonJS: The same as the above, but transpiled for compatibility with older projects;
 - Browser (useful for simple client-side apps): Browser-compatible Vanilla JS code (debugging + minified versions).
 
-Furthermore, it is important to state that some classes have import/export utilities which lets you to export instances of classifiers, vectorizers and others, to a plain JS object that can be stored as strings (JSON) so as to be retrieved and converted to an instance of its original class afterwards (check code docs for more details). Generic example:
+Furthermore, it is important to state that some classes have import/export utilities that let you to export instances of classifiers, vectorizers and others, to a plain JS object that can be stored as strings (JSON) so as to be retrieved and converted to an instance of its original class afterwards (check code docs for more details). Generic example:
 
     repo.save("my-model", model.toModel());
     // ...
@@ -104,7 +104,8 @@ It is possible to generate the code documentation for the current version by run
 
 Finally, should you want to open it in browser, there is a convenience script which creates a local server and opens the generated documentation in browser:
 
-    > npm run docs:serve
+    > npm run docs:serve # Serves "home" docs page
+    > nom run docs:serve:current # Serves code docs for current version
 
 ## Sources and development
 

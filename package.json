@@ -16,7 +16,8 @@
     "clean:browser:reg": "shx rm -f ./browser-dist/nlplearn-$npm_package_version.js",
     "clean:browser:min": "shx rm -f ./browser-dist/nlplearn-$npm_package_version.min.js",
     "docs:gen": "cross-var jsdoc -c ./.jsdoc.conf.json -P ./package.json -R ./README.md -q \"pname=$npm_package_name&pversion=$npm_package_version\"",
-    "docs:serve": "cross-var http-server ./docs/$npm_package_name/$npm_package_version -o",
+    "docs:serve": "cross-var http-server ./docs/ -o",
+    "docs:serve:current": "cross-var http-server ./docs/$npm_package_version -o",
     "test": "jest"
   },
   "keywords": [
