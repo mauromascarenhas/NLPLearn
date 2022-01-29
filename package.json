@@ -1,6 +1,6 @@
 {
   "name": "nlplearn",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Natural Language Processing toolkit.",
   "main": "index.js",
   "type": "module",
@@ -26,21 +26,28 @@
     "natural language processing"
   ],
   "author": "Mauro Mascarenhas de Araújo",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mauromascarenhas/NLPLearn"
+  },
+  "bugs": {
+    "url": "https://github.com/mauromascarenhas/NLPLearn/issues"
+  },
   "license": "MPL-2.0",
   "dependencies": {
     "porter-stemmer": "^0.9.1",
     "stopwords-iso": "^1.1.0"
   },
   "devDependencies": {
-    "@babel/cli": "^7.16.0",
-    "@babel/core": "^7.16.5",
-    "@babel/preset-env": "^7.16.5",
-    "babel-jest": "^27.4.5",
+    "@babel/cli": "^7.16.8",
+    "@babel/core": "^7.16.12",
+    "@babel/preset-env": "^7.16.11",
+    "babel-jest": "^27.4.6",
     "browserify": "^17.0.0",
     "cross-var": "^1.1.0",
     "http-server": "^14.1.0",
-    "jest": "^27.4.5",
-    "jsdoc": "^3.5.5",
+    "jest": "^27.4.7",
+    "jsdoc": "^3.6.10",
     "shx": "^0.3.4",
     "uglifyify": "^5.0.2"
   }

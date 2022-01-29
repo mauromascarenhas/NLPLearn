@@ -4,18 +4,25 @@ Natural Language Processing Toolkit for JavaScript.
 
 ## About NLPLearn
 
-... // TODO: Complete here!
-... // TODO: Fix link in docs section.
+// TODO: Fix link in docs section.
+
+NLPLearn is a natural language processing library focused on client-side operations, providing simple text processing tools, such as text tokenizer, stemmers, vectorizer etc. It includes a set of utility resources and a classifier as well.
 
 ## Usage
 
 The objective of this library is to be used for different purposes and contexts. So, it has been made available in three different versions:
 
-- ES5 modules + ES6 classes: for newer projects (with better intellisense support);
+- ES6 modules: for newer projects (with better intellisense support);
 - CommonJS: The same as the above, but transpiled for compatibility with older projects;
 - Browser (useful for simple client-side apps): Browser-compatible Vanilla JS code (debugging + minified versions).
 
-### ES5 Modules (+ES6 classes)
+Furthermore, it is important to state that some classes have import/export utilities which lets you to export instances of classifiers, vectorizers and others, to a plain JS object that can be stored as strings (JSON) so as to be retrieved and converted to an instance of its original class afterwards (check code docs for more details). Generic example:
+
+    repo.save("my-model", model.toModel());
+    // ...
+    let modelClone = ModelClass.fromModel(repo.get("my-model"));
+
+### ES6 Modules
 
 Although the "distribution" is in CommonJS, it is possible to import components which have been written in newer syntax. All you have to do is to add "/src" to your import:
 
@@ -28,6 +35,11 @@ Should you want to use object destructing:
     // must return "close"
     console.log(PorterStemmer.stem("closing"));
 
+Another advantage of using this sort of import is that it is possible (and way simpler) to import a single resource directly from the source module (it also saves memory, since you won't be importing unused resources):
+
+    import { PorterStemmer } from "nlplearn/src/preprocessing/stemmer";
+    // continue...
+
 ### CommonJS
 
 Since the "distrubution" version of this library is already in CommonJS, all you have to do to access its modules is the following:
@@ -36,19 +48,24 @@ Since the "distrubution" version of this library is already in CommonJS, all you
     // result must be 1
     console.log(NLPLearn.distance.cosine([0, 1], [1, 0]));
 
-Should you want to use object destructing:
+Should you want to use only specific resources:
 
-    const { distance } = require("nlplearn");
+    const distance = require("nlplearn").distance;
     // result must be 1
     console.log(distance.cosine([0, 1], [1, 0]));
     
     // in the following snippet, the result must be 1 as well
-    const { cosine } = distance;
+    const cosine = distance.cosine;
     console.log(cosine([0, 1], [1, 0]));
+
+Since the class recomendation is to import from "index.js", as previously demonstrated, the importation of a single resource would be a little bit trickier, but is is possible. However, it will be necessary to follow the same directory structure as in ES modules, replacing "/src" by "/dist":
+
+    const cosine = require("nlplearn/dist/utils/distance").cosine;
+    // the same as: const cosine = require("nlplearn").distance.cosine;
 
 ### Browser (Vanilla JS)
 
-The usage in browser is quite similar to CommonJS (thanks to Babel + Browserify). However, you must copy a version of nlplearn available in [the library repository](https://github.com/mauromascarenhas/NLPLearn/tree/main/browser-dist) (unfortunately, there is no CDN available yet) to your server and add the following tag to the `<head>...</head>` session of your website:
+The usage in browser is quite similar to CommonJS (thanks to Babel + Browserify). However, you must copy a version of nlplearn available in [the library repository](https://github.com/mauromascarenhas/NLPLearn/tree/main/browser-dist) to your server and add the following tag to the `<head>...</head>` session of your website (unfortunately, there is no CDN available yet):
 
     <script type="application/javascript" src="./path/to/nlplearn/nlplearn-<version>[.min].js" defer></script>
 
@@ -56,6 +73,8 @@ Available versions:
 
 - Regular: mostly used for debugging purposes;
 - Minified (ends with ".min.js"): meant for use in production - smaller size.
+
+**NB.:** Differently from ES modules and CommonJS, it is not possible to import a single resource.
 
 ## Build
 
