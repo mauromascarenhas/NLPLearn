@@ -29,7 +29,7 @@ Vue.createApp({
                 <a role="button" tabindex="0" class="btn btn-primary btn-lg p-3" href="./sample.html">Sample (latest version)</a>
             </div>
             <div class="col-md-6 d-flex justify-content-center justify-content-md-start my-1">
-                <a role="button" tabindex="0" class="btn btn-primary btn-lg p-3" :href="'./nlplearn/' + docVersion + '/index.html'">Documentation for v{{ docVersion }}</a>
+                <a role="button" tabindex="0" class="btn btn-primary btn-lg p-3" :href="'./' + docVersion + '/index.html'">Documentation for v{{ docVersion }}</a>
             </div>
         </div>
     `
