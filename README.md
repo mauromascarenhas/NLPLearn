@@ -63,9 +63,16 @@ Since the class recomendation is to import from "index.js", as previously demons
 
 ### Browser (Vanilla JS)
 
-The usage in browser is quite similar to CommonJS (thanks to Babel + Browserify). However, you must copy a version of nlplearn available in [the library repository](https://github.com/mauromascarenhas/NLPLearn/tree/main/browser-dist) to your server and add the following tag to the `<head>...</head>` session of your website (unfortunately, there is no CDN available yet):
+The usage in browser is quite similar to CommonJS (thanks to Babel + Browserify). However, you must copy a version of nlplearn available in [the library repository](https://github.com/mauromascarenhas/NLPLearn/tree/main/browser-dist) to your server and add the following tag to the `<head>...</head>` section of your website:
 
     <script type="application/javascript" src="./path/to/nlplearn/nlplearn-<version>[.min].js" defer></script>
+
+Another option (and most recommended) is include via CDN:
+
+    <!-- Development build -->
+    <script type="application/javascript" src="https://unpkg.com/nlplearn@1.0.0/browser-dist/nlplearn-1.0.0.js" defer></script>
+    <!-- Production build -->
+    <script type="application/javascript" src="https://unpkg.com/nlplearn@1.0.0/browser-dist/nlplearn-1.0.0.min.js" defer></script>
 
 Available versions:
 
