@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <title>NLPLearn sample</title>
+    <title>Sample | NLPLearn</title>
 
     <link rel="manifest" href="./site.webmanifest">
     <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
@@ -13,43 +13,269 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     
     <style>
+        :root {
+            --header-size: 56px;
+            --footer-size: 56px;
+        }
+        html {
+            scroll-padding-top: var(--header-size);
+        }
         main {
-            padding-bottom: 4rem;
+            margin-top: var(--header-size);
+            margin-bottom: var(--footer-size);
         }
         footer {
             width: 100%;
-            height: 4rem;
+            height: var(--footer-size);
             text-align: center;
             vertical-align: middle;
             background-color: paleturquoise;
         }
     </style>
 
-    <script defer src="https://unpkg.com/vue@3"></script>
+    <script defer src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-    <script defer src="./js/nlplearn-0.1.0.min.js"></script>
+    <script defer src="./js/nlplearn-1.0.0.min.js"></script>
     <script defer src="./js/SampleApp.js"></script>
 </head>
 <body>
+    <header>
+        <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+            <div class="container-fluid">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#headerNav" aria-controls="headerNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="headerNav">
+                    <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" href="./index.html">Home</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="pageContent" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Content
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="pageContent">
+                                <li><a class="dropdown-item" href="#content-dtm-intro">Document-term Matrix - Intro</a></li>
+                                <li><a class="dropdown-item" href="#content-dtm-processor">Document-term Matrix - TextProcessor</a></li>
+                                <li><a class="dropdown-item" href="#content-dtm-vectorizer">Document-term Matrix - TextVectorizer</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="#content-classifier">Hands-on experiment - Classifier</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="https://github.com/mauromascarenhas/NLPLearn">Repository</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
     <main>
         <div class="container">
             <div class="row">
                 <div class="col-12  d-flex justify-content-center">
-                    <h1 class="display-1 my-3"><strong>NLPLearn sample</strong></h1>
+                    <h1 class="display-1 my-5"><strong>NLPLearn sample</strong></h1>
                 </div>
             </div>
             <div class="row">
                 <div class="col-12 d-flex justify-content-center">
-                    <p class="lead text-center">A Natural Language Processing Toolkit for JavaScript.</p>
+                    <p class="lead text-center">
+                        This page provides some simple usage samples for NLPLearn. <br />
+                        Should you be looing for the library documentation, check the <a href="./index.html">index page</a>.
+                    </p>
                 </div>
+            </div>
+            <div class="row mt-5" id="content-dtm-intro">
                 <div class="col-12 d-flex justify-content-center">
-                    <p class="text-center">NLPLearn is a natural language processing library focused on client-side operations, providing simple text processing tools, such as text tokenizer, stemmers, vectorizer etc. It includes a set of utility resources and a classifier as well.</p>
+                    <h2>Building a document-term matrix</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 d-flex justify-content-center">
+                    <p>
+                        In order to build a document-term matrix, it is possible to use either the TextVectorizer
+                        class for tokenized inputs or the TextProcessor class, which includes a TextProcessor,
+                        Stemmer, NaiveWordTokenizer and TextVectorizer under the hood.
+                    </p>
+                </div>
+            </div>
+            <div class="row my-3" id="content-dtm-processor">
+                <div class="col-12 d-flex justify-content-center">
+                    <h3>Using TextProcessor (for raw input)</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 d-flex justify-content-center">
+                    <pre class="px-4" style="background-color: aliceblue;">
+                        <code>
+/*
+    ** For CommonJS and Vanilla JS (browser), use:
+    const TextCase = require("nlplearn").preprocessor.TextCase;
+    const StemmerType = require("nlplearn").preprocessor.StemmerType;
+    const TextProcessor = require("nlplearn").preprocessor.TextProcessor;
+
+    const StopWords = require("nlplearn").stopwords.StopWords;
+    const TextVectorizer = require("nlplearn").vectorizer.TextVectorizer;
+*/
+import { StopWords } from "nlplearn/src/preprocessing/stopwords";
+import { TextVectorizer } from "nlplearn/src/preprocessing/vectorizer";
+import { TextProcessor, TextCase, StemmerType } from "nlplearn/src/utils/preprocessor";
+
+// Array of texts (documents)
+let texts = [
+    "hello, cruel world!",
+    "such a strange situation",
+    "Just a simple line of text."
+];
+
+/*
+    In this step we tell TextProcessor to normalize text case (lowercase),
+        strip accents, tokenize the texts (word-level) and removing numbers,
+        remove english stopwords (NLTK set) and stemize whe given words.
+*/
+let preprocessor = new TextProcessor(false, TextCase.LOWERCASE, false, true,
+    true, false, StopWords.get("en"), StemmerType.PORTER);
+// Can be either "transform", "fitTransform" or "fit(X).transform"
+let processedTexts = preprocessor.transform(texts);
+
+/*
+    Creates a text vectorizer with default parameters: Raw count (TF),
+        no IDF and no prefefined vocabulary (terms).
+*/
+let vectorizer = new TextVectorizer();
+let matrix = vectorizer.fitTransform(processedTexts);
+
+// Logs current vocabulary (ordered) in the console
+console.log(vectorizer.vocabulary);
+// Logs the output matrix (number[][]);
+console.log(matrix);
+                        </code>
+                    </pre>
+                </div>
+            </div>
+            <div class="row my-3" id="content-dtm-vectorizer mt-3">
+                <div class="col-12 d-flex justify-content-center">
+                    <h3>Using TextVectorizer (for tokenized inputs)</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 d-flex justify-content-center">
+                    <p>
+                        In case of having a corpora of tokenized (and sanitized) texts, it will be much simpler to obtain
+                        the document-term matrix (the process is quite similar to the previously demonstrated one):
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 d-flex justify-content-center">
+                    <pre class="px-4" style="background-color: aliceblue;">
+                        <code>
+/*
+    ** For CommonJS and Vanilla JS (browser), use:
+    const TextVectorizer = require("nlplearn").vectorizer.TextVectorizer;
+*/
+import { TextVectorizer } from "nlplearn/src/preprocessing/vectorizer";
+
+// Array of tokenized texts (documents)
+let texts = [
+    ["hello", "cruel", world"],
+    ["such", "strange", "situation"],
+    ["Just", "simple", "line", "text"]
+];
+
+/*
+    Creates a text vectorizer with default parameters: Raw count (TF),
+        no IDF and no prefefined vocabulary (terms).
+*/
+let vectorizer = new TextVectorizer();
+let matrix = vectorizer.fitTransform(processedTexts);
+
+// Logs current vocabulary (ordered) in the console
+console.log(vectorizer.vocabulary);
+// Logs the output matrix (number[][]);
+console.log(matrix);
+                        </code>
+                    </pre>
+                </div>
+            </div>
+            <div class="row mt-5">
+                <div class="col-12 d-flex justify-content-center">
+                    <h2 id="content-classifier">Hands-on experiment</h2>
+                </div>
+            </div>
+            <div class="row my-3">
+                <div class="col-12 d-flex justify-content-center mb-3">
+                    <p>
+                        You may check below a usage sample for predicting "who said that?".<br />
+                        Keep in mind that no external dependency has been used so as to build the prediction model.
+                    </p>
                 </div>
             </div>
             <div id="app"></div>
-            <div class="row">
-                <div class="col-md-12 d-flex justify-content-center my-3">
-                    <a role="button" tabindex="0" class="btn btn-secondary btn-lg p-3" href="https://github.com/mauromascarenhas/NLPLearn">Repository (sources)</a>
+            <div class="row my-3">
+                <div class="col-12 d-flex justify-content-center mb-2">
+                    <a class="btn btn-primary" data-bs-toggle="collapse" href="#clfSource" role="button" aria-expanded="false" aria-controls="clfSource">
+                        TOGGLE SOURCE CODE
+                    </a>
+                </div>
+                <div class="col-12">
+                    <div class="collapse" id="clfSource">
+                        <div class="card card-body">
+                            <pre class="px-4" style="background-color: aliceblue;">
+                                <code>
+// Browser version
+const NLPLearn = require("nlplearn");
+
+const texts = [
+    "I need to be more confident about building predictive models...",
+    "If I were to work with predictive models I would start with decision trees!",
+    "I practice some radical sports such as skateborading and surfing oftenly.",
+    "Personaly speaking, practicing sports is the norm.",
+    "It is high time I bought this brand new skateboard.",
+    "I love eating, specially pasta and lasagna.",
+    "Culinary is my passion!"
+];
+
+const authors = [
+    "James",
+    "James",
+    "Paul",
+    "Paul",
+    "Paul",
+    "John",
+    "John"
+];
+
+const { TextProcessor, TextCase, StemmerType } = NLPLearn.preprocessor;
+
+/*
+    In this step we tell TextProcessor to normalize text case (lowercase),
+        strip accents, tokenize the texts (word-level) and removing numbers,
+        remove english stopwords (NLTK set) and stemize whe given words.
+*/
+const pcs = new TextProcessor(false, TextCase.LOWERCASE, false, true,
+    true, false, NLPLearn.stopwords.StopWords.get("en"), StemmerType.PORTER);
+
+/*
+    Creates a text vectorizer with default parameters: Raw count (TF),
+        no IDF and no prefefined vocabulary (terms).
+*/
+const trf = new NLPLearn.vectorizer.TextVectorizer();
+const matrix = trf.fitTransform(pcs.transform(texts));
+
+const clf = new NLPLearn.classifier.NLPClassifier();
+clf.fit(matrix, authors);
+
+// Acquires user input dynamically
+let userInput = document.querySelector('input[type="text"]').value;
+
+let cMatrix = trf.transform(pcs.transform([userInput]));
+prediction = clf.predict(cMatrix)[0];
+console.log(prediction)
+                                </code>
+                            </pre>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

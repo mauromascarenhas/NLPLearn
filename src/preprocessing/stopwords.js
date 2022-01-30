@@ -23,7 +23,7 @@ export class StopWords {
      * @param {string} lang - ISO language code.
      * @param {string} source - Stop list source. Valid
      *   values are either "NLTK" (default) or "ISO".
-     * @returns {Array<string>} the stop words array
+     * @returns {string[]} the stop words array
      *   for the given language, or undefined, if not
      *   found.
      */
