@@ -4,8 +4,6 @@ Natural Language Processing Toolkit for JavaScript.
 
 ## About NLPLearn
 
-// TODO: Fix link in docs section.
-
 NLPLearn is a natural language processing library focused on client-side operations, providing simple text processing tools, such as text tokenizer, stemmers, vectorizer etc. It includes a set of utility resources and a classifier as well.
 
 ## Usage
@@ -96,7 +94,7 @@ The tests files are located into `./test` directory. So, evertything you have to
 
 In addition to the static documentation, the source code is completely typed, providing a greater support for code intellisense (tested with JS, only).
 
-The HTML documentation for this library can be accessed [here](./). It is important to keep in mind that new set of documentation pages is generated for each tagged version. Check the next subtopic so as to learn how to build a "preview" version yourself.
+The HTML documentation for this library can be accessed [here](https://mauromascarenhas.github.io/NLPLearn/). It is important to keep in mind that new set of documentation pages is generated for each tagged version. Check the next subtopic so as to learn how to build a "preview" version yourself.
 
 ### Docs generation
 
