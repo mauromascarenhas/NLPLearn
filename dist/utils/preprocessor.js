@@ -258,6 +258,7 @@ var TextProcessor = /*#__PURE__*/function () {
      * Removes "extra" spaces.
      * @param {string} txt - Text to be normalized.
      * @returns {string} text with normalized spaces.
+     * @private
      */
 
   }, {

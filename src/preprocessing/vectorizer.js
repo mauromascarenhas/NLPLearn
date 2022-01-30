@@ -35,7 +35,7 @@ class TextVectorizer {
 
     #tf = TFMetrics.RAW;
     #idf = IDFMetrics.NONE;
-    /** @type {Array<string>} */
+    /** @type {string[]} */
     #vocab = null;
     #isFitted = false;
     /** @type {object} */
@@ -45,12 +45,12 @@ class TextVectorizer {
      * Creates an instance of TextVectorizer class
      * @param {string} tf - Term-Frequency
      * @param {string} idf - Inverse Document-Frequency
-     * @param {Array<string>} vocab - Vocabulary
+     * @param {string[]} vocab - Vocabulary
      */
     constructor(tf = TFMetrics.RAW, idf = IDFMetrics.NONE, vocab = null){
         if (!tf in TFMetrics) throw new Error("Invalid value for 'tf'.  It must be one of the object values available at TFMetrics object.");
         if (!idf in IDFMetrics) throw new Error("Invalid value for 'idf'.  It must be one of the object values available at IDFMetrics object.");
-        if (vocab && !vocab instanceof Array) throw new TypeError(`Invalid argument type for 'vocab'. Expected 'Array<string>', but '${typeof vocab}' was given.`);
+        if (vocab && !vocab instanceof Array) throw new TypeError(`Invalid argument type for 'vocab'. Expected 'string[]', but '${typeof vocab}' was given.`);
 
         this.#tf = tf;
         this.#idf = idf;
@@ -64,7 +64,7 @@ class TextVectorizer {
     /**
      * Builds vocabulary (if not specified) and vocabulary
      *  map
-     * @param {Array<Array<string>>} X - Array of
+     * @param {string[][]} X - Array of
      *  tokenized texts.
      * @returns {TextVectorizer} self instance
      */
@@ -79,9 +79,9 @@ class TextVectorizer {
 
     /**
      * Vectorizes the given dataset.
-     * @param {Array<Array<string>>} X - Array of
+     * @param {string[][]} X - Array of
      *  tokenized texts.
-     * @returns {Array<Array<number>>} TF-IDF matrix.
+     * @returns {number[][]} TF-IDF matrix.
      */
     transform(X){
         if (!this.#isFitted) throw new Error("The Vectorizer must be fitted before a transformation request.");
@@ -109,16 +109,17 @@ class TextVectorizer {
 
     /**
      * Convenience method for #fit + #transform
-     * @param {Array<Array<string>>} X - Array of
+     * @param {string[][]} X - Array of
      *  tokenized texts.
-     * @returns {Array<Array<number>>} TF-IDF matrix.
+     * @returns {number[][]} TF-IDF matrix.
      */
     fitTransform(X){ return this.fit(X).transform(X); }
 
     /**
-     * @param {Array<Array<string>>} X - Array of
+     * @param {string[][]} X - Array of
      *  tokenized texts.
-     * @returns {Array<Array<number>>} TF matrix (raw).
+     * @returns {number[][]} TF matrix (raw).
+     * @private
      */
     #transformRaw(X){
         let tf = new Array(X.length);
@@ -130,9 +131,10 @@ class TextVectorizer {
     }
 
     /**
-     * @param {Array<Array<string>>} X - Array of
+     * @param {string[][]} X - Array of
      *  tokenized texts.
-     * @returns {Array<Array<number>>} TF matrix (log).
+     * @returns {number[][]} TF matrix (log).
+     * @private
      */
     #transformLog(X){
         let tf = this.#transformRaw(X);
@@ -143,11 +145,12 @@ class TextVectorizer {
     }
 
     /**
-     * @param {Array<Array<string>>} X - Array of
+     * @param {string[][]} X - Array of
      *  tokenized texts.
-     * @returns {Array<Array<number>>} TF matrix (bool).
+     * @returns {number[][]} TF matrix (bool).
+     * @private
      */
-     #transformBool(X){
+    #transformBool(X){
         let tf = new Array(X.length);
         for (let i = 0; i < tf.length; ++i) tf[i] = new Array(this.#vocab.length).fill(0);
         for (let i = 0; i < X.length; ++i)
@@ -157,11 +160,12 @@ class TextVectorizer {
     }
 
     /**
-     * @param {Array<Array<string>>} X - Array of
+     * @param {string[][]} X - Array of
      *  tokenized texts.
-     * @returns {Array<Array<number>>} TF matrix (freq).
+     * @returns {number[][]} TF matrix (freq).
+     * @private
      */
-     #transformFreq(X){
+    #transformFreq(X){
         let tf = this.#transformRaw(X);
         for (let i = 0; i < tf.length; ++i){
             let sum = 0;
@@ -172,12 +176,13 @@ class TextVectorizer {
     }
 
     /**
-     * @param {Array<Array<string>>} X - Array of
+     * @param {string[][]} X - Array of
      *  tokenized texts.
      * @param {boolean} smooth - Use smooth factor.
-     * @returns {Array<Array<number>>} IDF matrix.
+     * @returns {number[][]} IDF matrix.
+     * @private
      */
-     #transformIDF(X, smooth){
+    #transformIDF(X, smooth){
         let tf_bool = this.#transformBool(X);
         let n_count = new Array(tf_bool[0].length).fill(0);
         for (let i = 0; i < tf_bool.length; ++i){
@@ -195,10 +200,11 @@ class TextVectorizer {
 
     /**
      * Builds a vocabulary
-     * @param {Array<Array<string>>} X - Array of
+     * @param {string[][]} X - Array of
      *  tokenized texts.
-     * @returns {Array<string>} vocabulary of the
+     * @returns {string[]} vocabulary of the
      *  given input.
+     * @private
      */
     static #buildVocabulary(X){
         let vocab = new Set();
@@ -210,10 +216,11 @@ class TextVectorizer {
     /**
      * Checks if the given input is a 2d string
      *  matrix / list-like object.
-     * @param {Array<Array<string>>} arr - 2d string
+     * @param {string[][]} arr - 2d string
      *  matrix / list-like object.
-     * @returns {Array<Array<string>>} a copy of the
+     * @returns {string[][]} a copy of the
      *  given input (arr).
+     * @private
      */
     static #checkTokenList(arr){
         try {
@@ -229,7 +236,7 @@ class TextVectorizer {
      * @typedef {Object} TextVectorizerModel
      * @property {string} tf - TFMetrics value.
      * @property {string} idf - IDFMetrics value.
-     * @property {Array<string>|null} vocabulary - Vocabulary.
+     * @property {string[]|null} vocabulary - Vocabulary.
      * @property {object|null} vocabulary_map - Vocabulary map
      *  object.
      * @property {boolean} isFitted - A property which

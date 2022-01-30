@@ -36,7 +36,7 @@ class NaiveWordTokenizer {
      * Tokenizes the given text/document in
      *  word level.
      * @param {string} text - Text/document.
-     * @returns {Array<string>} the tokenized version
+     * @returns {string[]} the tokenized version
      *  of the given text.
      */
     tokenize(text){

@@ -11,7 +11,7 @@ import { TFMetrics, IDFMetrics } from "../preprocessing/vectorizer"
 
 /**
  * Sums array elements and returns min(sum, 1).
- * @param {Array<number>} arr - Array of numbers.
+ * @param {number[]} arr - Array of numbers.
  * @returns {number} sum of the array's elements
  *  of 1 if sum <= 0.
  */
@@ -24,8 +24,8 @@ function safeSum(arr){
 /**
  * Similar to "cosine" but considering the
  *   possibility of |v1| = 0 or |v2| = 0.
- * @param {Array<number>} v1 - First vector.
- * @param {Array<number>} v2 - Second vector.
+ * @param {number[]} v1 - First vector.
+ * @param {number[]} v2 - Second vector.
  * @returns {number} the cosine distance.
  */
 function safeCos(v1, v2){
@@ -61,9 +61,9 @@ class NLPClassifier {
     #idf = IDFMetrics.NONE;
     #mtr = DistMetrics.COSINE;
     #dist = CLFMetrics.AVG;
-    /** @type {Array<Array<number>>} */
+    /** @type {number[][]} */
     #coef = null;
-    /** @type {Array<any>} */
+    /** @type {any[]} */
     #classes = null;
     #isFitted = false;
 
@@ -94,9 +94,9 @@ class NLPClassifier {
      * Generates classification coefficients and classes
      *  for current instance.
      * It must always be called before "predict".
-     * @param {Array<Array<number>>} X - Document-Term matrix
+     * @param {number[][]} X - Document-Term matrix
      *  (vectorized text).
-     * @param {Array<any>} Y - Correspondent classification
+     * @param {any[]} Y - Correspondent classification
      *  array.
      * @returns {NLPClassifier} reference to current
      *  classifier.
@@ -107,15 +107,15 @@ class NLPClassifier {
         if (!(Y instanceof Array))
             throw new TypeError("'Y' must be a 1d array.");
         
-        /** @type {Array<Array<number>>} */
+        /** @type {number[][]} */
         let x = deepCopy(X);
-        /** @type {Array<any>} */
+        /** @type {any[]} */
         let y = deepCopy(Y);
 
         this.#classes = Array.from(new Set(y));
         for (let i = 0; i < y.length; ++i) y[i] = this.#classes.indexOf(y[i]);
 
-        /** @type {Array<Array<number>>} */
+        /** @type {number[][]} */
         let tf;
         switch(this.#mtr){
             case CLFMetrics.AVG: tf = this.#fitAvg(x, y); break;
@@ -142,9 +142,9 @@ class NLPClassifier {
 
     /**
      * Performs the prediction for the given input.
-     * @param {Array<Array<number>>} X - Document-Term matrix
+     * @param {number[][]} X - Document-Term matrix
      *  (vectorized text).
-     * @returns {Array<any>} an array of predicted values (classes).
+     * @returns {any[]} an array of predicted values (classes).
      */
     predict(X){
         if (!this.#isFitted) throw new Error("The classifier must be fitted before predicting anything.");
@@ -165,9 +165,9 @@ class NLPClassifier {
      *  returns a matrix of probability [0,1] for each
      *  document/class.
      * The greater the value, the most similar it is;
-     * @param {Array<Array<number>>} X - Document-Term matrix
+     * @param {number[][]} X - Document-Term matrix
      *  (vectorized text).
-     * @returns {Array<Array<any>>} a matrix of match probability
+     * @returns {any[][]} a matrix of match probability
      *  for each document.
      */
     predictProba(X){
@@ -201,9 +201,10 @@ class NLPClassifier {
     /**
      * Fits the given document-term matrix to the specified
      *  metric (average).
-     * @param {Array<Array<number>>} x - Document-term matrix.
-     * @param {Array<any>} y - Classes (map).
-     * @returns {Array<Array<number>>} the TF matrix (average).
+     * @param {number[][]} x - Document-term matrix.
+     * @param {any[]} y - Classes (map).
+     * @returns {number[][]} the TF matrix (average).
+     * @private
      */
     #fitAvg(x, y){
         let count = new Array(this.#classes.length).fill(0);
@@ -225,9 +226,10 @@ class NLPClassifier {
     /**
      * Fits the given document-term matrix to the specified
      *  metric (logarithm).
-     * @param {Array<Array<number>>} x - Document-term matrix.
-     * @param {Array<any>} y - Classes (map).
-     * @returns {Array<Array<number>>} the TF matrix (logarithm).
+     * @param {number[][]} x - Document-term matrix.
+     * @param {any[]} y - Classes (map).
+     * @returns {number[][]} the TF matrix (logarithm).
+     * @private
      */
      #fitLog(x, y){
         let count = new Array(this.#classes.length).fill(0);
@@ -249,9 +251,10 @@ class NLPClassifier {
     /**
      * Fits the given document-term matrix to the specified
      *  metric (raw).
-     * @param {Array<Array<number>>} x - Document-term matrix.
-     * @param {Array<any>} y - Classes (map).
-     * @returns {Array<Array<number>>} the TF matrix (raw).
+     * @param {number[][]} x - Document-term matrix.
+     * @param {any[]} y - Classes (map).
+     * @returns {number[][]} the TF matrix (raw).
+     * @private
      */
      #fitRaw(x, y){ 
         let coef = new Array(this.#classes.length);
@@ -266,9 +269,10 @@ class NLPClassifier {
     /**
      * Fits the given document-term matrix to the specified
      *  metric (boolean).
-     * @param {Array<Array<number>>} x - Document-term matrix.
-     * @param {Array<any>} y - Classes (map).
-     * @returns {Array<Array<number>>} the TF matrix (boolean).
+     * @param {number[][]} x - Document-term matrix.
+     * @param {any[]} y - Classes (map).
+     * @returns {number[][]} the TF matrix (boolean).
+     * @private
      */
      #fitBool(x, y){ 
         let coef = new Array(this.#classes.length);
@@ -283,9 +287,10 @@ class NLPClassifier {
     /**
      * Fits the given document-term matrix to the specified
      *  metric (frequency).
-     * @param {Array<Array<number>>} x - Document-term matrix.
-     * @param {Array<any>} y - Classes (map).
-     * @returns {Array<Array<number>>} the TF matrix (frequency).
+     * @param {number[][]} x - Document-term matrix.
+     * @param {any[]} y - Classes (map).
+     * @returns {number[][]} the TF matrix (frequency).
+     * @private
      */
      #fitFreq(x, y){
         let count = new Array(this.#classes.length).fill(0);
@@ -308,10 +313,11 @@ class NLPClassifier {
     /**
      * Creates a IDF matrix for the given document-term
      *  matrix (uses smooth factor by default).
-     * @param {Array<Array<number>>} x - Document-term matrix.
-     * @param {Array<any>} y - Classes (map).
+     * @param {number[][]} x - Document-term matrix.
+     * @param {any[]} y - Classes (map).
      * @param {boolean} smooth - Use smooth factor.
      * @returns the IDF matrix.
+     * @private
      */
     #fitIDF(x, y, smooth = true){
         let bool_tf = this.#fitBool(x, y);
@@ -334,8 +340,9 @@ class NLPClassifier {
     /**
      * Transforms test matrix into a valid comparison
      *  one.
-     * @param {Array<Array<number>>} X 
-     * @returns {Array<Array<number>>}
+     * @param {number[][]} X 
+     * @returns {number[][]}
+     * @private
      */
     #transformTest(X){
         let m = new Array(X.length);
@@ -370,19 +377,20 @@ class NLPClassifier {
 
     /**
      * @callback Callable
-     * @param {Array<number>} v1
-     * @param {Array<number>} v2
+     * @param {number[]} v1
+     * @param {number[]} v2
      * @returns {number}
      */
 
     /**
      * Applies the given classification function
      *  to the test set.
-     * @param {Array<Array<number>>} X - Test
+     * @param {number[][]} X - Test
      *  matrix.
      * @param {Callable} callable - Classification
      *  function.
-     * @returns {Array<Array<number>>}
+     * @returns {number[][]}
+     * @private
      */
     #applyDecision(X, callable){
         let m = new Array(X.length);
@@ -399,10 +407,10 @@ class NLPClassifier {
      * @typedef {Object} NLPClassifierModel
      * @property {string} idf - IDFMetrics value.
      * @property {string} mtr - CLFMetrics value.
-     * @property {Array<Array<number>>|null} coef - Fitted
+     * @property {number[][]|null} coef - Fitted
      *  classifier coefficients (when available).
      * @property {string} dist - DistMetrics value.
-     * @property {Array<any>|null} classes - Fitted
+     * @property {any[]|null} classes - Fitted
      *  classifier classes (when available).
      * @property {boolean} isFitted - A property which
      *  specifies whether the classifier is fitted or not.

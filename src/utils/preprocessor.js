@@ -143,6 +143,7 @@ class TextProcessor {
      * Removes "extra" spaces.
      * @param {string} txt - Text to be normalized.
      * @returns {string} text with normalized spaces.
+     * @private
      */
     static #normalizeSpacing(txt){ return txt.replace(/\s+/gi, " "); }
 
@@ -150,6 +151,7 @@ class TextProcessor {
      * Removes accents from the given text.
      * @param {string} txt - Text to be normalized.
      * @returns {string} text without accents.
+     * @private
      */
     static #removeAccents(txt){ return txt.normalize("NFD").replace(/[\u0300-\u036f]/g, ""); }
 
@@ -157,6 +159,7 @@ class TextProcessor {
      * Asserts primitive values to the given variables
      * @param {TypeCheck[]} typeChecks - TypeCheck objects.
      * @throws {TypeError}
+     * @private
      */
     #checkPrimitive(typeChecks){
         for (const el of typeChecks){
@@ -169,6 +172,7 @@ class TextProcessor {
      * Asserts object instances to the given variables
      * @param {TypeCheck[]} typeChecks - TypeCheck objects.
      * @throws {TypeError}
+     * @private
      */
     #checkInstance(typeChecks){
         for (const el of typeChecks)

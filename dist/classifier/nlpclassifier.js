@@ -59,7 +59,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 /**
  * Sums array elements and returns min(sum, 1).
- * @param {Array<number>} arr - Array of numbers.
+ * @param {number[]} arr - Array of numbers.
  * @returns {number} sum of the array's elements
  *  of 1 if sum <= 0.
  */
@@ -75,8 +75,8 @@ function safeSum(arr) {
 /**
  * Similar to "cosine" but considering the
  *   possibility of |v1| = 0 or |v2| = 0.
- * @param {Array<number>} v1 - First vector.
- * @param {Array<number>} v2 - Second vector.
+ * @param {number[]} v1 - First vector.
+ * @param {number[]} v2 - Second vector.
  * @returns {number} the cosine distance.
  */
 
@@ -149,9 +149,9 @@ var _transformTest = /*#__PURE__*/new WeakSet();
 var _applyDecision = /*#__PURE__*/new WeakSet();
 
 var NLPClassifier = /*#__PURE__*/function () {
-  /** @type {Array<Array<number>>} */
+  /** @type {number[][]} */
 
-  /** @type {Array<any>} */
+  /** @type {any[]} */
 
   /**
    * Creates an instance of NLPClassifier.
@@ -253,9 +253,9 @@ var NLPClassifier = /*#__PURE__*/function () {
      * Generates classification coefficients and classes
      *  for current instance.
      * It must always be called before "predict".
-     * @param {Array<Array<number>>} X - Document-Term matrix
+     * @param {number[][]} X - Document-Term matrix
      *  (vectorized text).
-     * @param {Array<any>} Y - Correspondent classification
+     * @param {any[]} Y - Correspondent classification
      *  array.
      * @returns {NLPClassifier} reference to current
      *  classifier.
@@ -266,10 +266,10 @@ var NLPClassifier = /*#__PURE__*/function () {
     value: function fit(X, Y) {
       if (!(X instanceof Array && X[0] && X[0] instanceof Array && typeof X[0][0] === "number")) throw new TypeError("'X' must be a 2d numeric array.");
       if (!(Y instanceof Array)) throw new TypeError("'Y' must be a 1d array.");
-      /** @type {Array<Array<number>>} */
+      /** @type {number[][]} */
 
       var x = (0, _copy.deepCopy)(X);
-      /** @type {Array<any>} */
+      /** @type {any[]} */
 
       var y = (0, _copy.deepCopy)(Y);
 
@@ -278,7 +278,7 @@ var NLPClassifier = /*#__PURE__*/function () {
       for (var i = 0; i < y.length; ++i) {
         y[i] = _classPrivateFieldGet(this, _classes).indexOf(y[i]);
       }
-      /** @type {Array<Array<number>>} */
+      /** @type {number[][]} */
 
 
       var tf;
@@ -325,9 +325,9 @@ var NLPClassifier = /*#__PURE__*/function () {
     }
     /**
      * Performs the prediction for the given input.
-     * @param {Array<Array<number>>} X - Document-Term matrix
+     * @param {number[][]} X - Document-Term matrix
      *  (vectorized text).
-     * @returns {Array<any>} an array of predicted values (classes).
+     * @returns {any[]} an array of predicted values (classes).
      */
 
   }, {
@@ -351,9 +351,9 @@ var NLPClassifier = /*#__PURE__*/function () {
      *  returns a matrix of probability [0,1] for each
      *  document/class.
      * The greater the value, the most similar it is;
-     * @param {Array<Array<number>>} X - Document-Term matrix
+     * @param {number[][]} X - Document-Term matrix
      *  (vectorized text).
-     * @returns {Array<Array<any>>} a matrix of match probability
+     * @returns {any[][]} a matrix of match probability
      *  for each document.
      */
 
@@ -393,9 +393,10 @@ var NLPClassifier = /*#__PURE__*/function () {
     /**
      * Fits the given document-term matrix to the specified
      *  metric (average).
-     * @param {Array<Array<number>>} x - Document-term matrix.
-     * @param {Array<any>} y - Classes (map).
-     * @returns {Array<Array<number>>} the TF matrix (average).
+     * @param {number[][]} x - Document-term matrix.
+     * @param {any[]} y - Classes (map).
+     * @returns {number[][]} the TF matrix (average).
+     * @private
      */
 
   }, {
@@ -405,10 +406,10 @@ var NLPClassifier = /*#__PURE__*/function () {
      * @typedef {Object} NLPClassifierModel
      * @property {string} idf - IDFMetrics value.
      * @property {string} mtr - CLFMetrics value.
-     * @property {Array<Array<number>>|null} coef - Fitted
+     * @property {number[][]|null} coef - Fitted
      *  classifier coefficients (when available).
      * @property {string} dist - DistMetrics value.
-     * @property {Array<any>|null} classes - Fitted
+     * @property {any[]|null} classes - Fitted
      *  classifier classes (when available).
      * @property {boolean} isFitted - A property which
      *  specifies whether the classifier is fitted or not.

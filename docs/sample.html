@@ -24,7 +24,7 @@
             margin-top: var(--header-size);
             margin-bottom: var(--footer-size);
         }
-        footer {
+        footer.page-footer {
             width: 100%;
             height: var(--footer-size);
             text-align: center;
@@ -204,16 +204,50 @@ console.log(matrix);
                 </div>
             </div>
             <div class="row my-3">
-                <div class="col-12 d-flex justify-content-center mb-3">
+                <div class="col-12 mb-3 text-center">
                     <p>
                         You may check below a usage sample for predicting "who said that?".<br />
                         Keep in mind that no external dependency has been used so as to build the prediction model.
                     </p>
+                    <p>
+                        Consider the following phrases:
+                    </p>
+                    <blockquote class="blockquote">
+                        <p class="mb-1">"I need to be more confident about building predictive models..."</p>
+                        <footer class="blockquote-footer"><cite title="James">James</cite></footer>
+                    </blockquote>
+                    <blockquote class="blockquote">
+                        <p class="mb-1">"If I were to work with predictive models I would start with decision trees!"</p>
+                        <footer class="blockquote-footer"><cite title="James">James</cite></footer>
+                    </blockquote>
+                    <blockquote class="blockquote">
+                        <p class="mb-1">"I practice some radical sports such as skateborading and surfing oftenly.",</p>
+                        <footer class="blockquote-footer"><cite title="Paul">Paul</cite></footer>
+                    </blockquote>
+                    <blockquote class="blockquote">
+                        <p class="mb-1">"Personaly speaking, practicing sports is the norm."</p>
+                        <footer class="blockquote-footer"><cite title="Paul">Paul</cite></footer>
+                    </blockquote>
+                    <blockquote class="blockquote">
+                        <p class="mb-1">"It is high time I bought this brand new skateboard."</p>
+                        <footer class="blockquote-footer"><cite title="Paul">Paul</cite></footer>
+                    </blockquote>
+                    <blockquote class="blockquote">
+                        <p class="mb-1">"I love eating, specially pasta and lasagna."</p>
+                        <footer class="blockquote-footer"><cite title="John">John</cite></footer>
+                    </blockquote>
+                    <blockquote class="blockquote">
+                        <p class="mb-1">"Culinary is my passion!"</p>
+                        <footer class="blockquote-footer"><cite title="John">John</cite></footer>
+                    </blockquote>
+                    <p>
+                        Can you guess who said the following? (try experimenting other related phrases as well)
+                    </p>
                 </div>
             </div>
             <div id="app"></div>
-            <div class="row my-3">
-                <div class="col-12 d-flex justify-content-center mb-2">
+            <div class="row my-5">
+                <div class="col-12 d-flex justify-content-center mb-5">
                     <a class="btn btn-primary" data-bs-toggle="collapse" href="#clfSource" role="button" aria-expanded="false" aria-controls="clfSource">
                         TOGGLE SOURCE CODE
                     </a>
@@ -280,7 +314,7 @@ console.log(prediction)
             </div>
         </div>
     </main>
-    <footer class="position-fixed bottom-0 d-flex justify-content-center align-items-center">
+    <footer class="page-footer position-fixed bottom-0 d-flex justify-content-center align-items-center">
         <p class="text-center my-0">NLPLearn is available under Mozilla Public Licence v2.0 (<a href="https://www.mozilla.org/en-US/MPL/2.0/">MPL-2.0</a>).</p>
     </footer>
 </body>

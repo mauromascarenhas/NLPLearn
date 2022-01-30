@@ -309,8 +309,9 @@ class RSLPStemmer {
     /**
      * Applies rule for the given word
      * @param {string} word - word (or part) to be stemmed.
-     * @param {Array<Array<any>>} rules - Array of rules.
+     * @param {any[][]} rules - Array of rules.
      * @returns {string} word part (after applying rule).
+     * @private
      */
     static #applyRule(word, rules){
         for (let rule of rules)

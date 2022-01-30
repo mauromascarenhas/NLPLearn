@@ -103,7 +103,7 @@ var _transformFreq = /*#__PURE__*/new WeakSet();
 var _transformIDF = /*#__PURE__*/new WeakSet();
 
 var TextVectorizer = /*#__PURE__*/function () {
-  /** @type {Array<string>} */
+  /** @type {string[]} */
 
   /** @type {object} */
 
@@ -111,7 +111,7 @@ var TextVectorizer = /*#__PURE__*/function () {
    * Creates an instance of TextVectorizer class
    * @param {string} tf - Term-Frequency
    * @param {string} idf - Inverse Document-Frequency
-   * @param {Array<string>} vocab - Vocabulary
+   * @param {string[]} vocab - Vocabulary
    */
   function TextVectorizer() {
     var _tf2 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : TFMetrics.RAW;
@@ -158,7 +158,7 @@ var TextVectorizer = /*#__PURE__*/function () {
 
     if (!_tf2 in TFMetrics) throw new Error("Invalid value for 'tf'.  It must be one of the object values available at TFMetrics object.");
     if (!idf in IDFMetrics) throw new Error("Invalid value for 'idf'.  It must be one of the object values available at IDFMetrics object.");
-    if (vocab && !vocab instanceof Array) throw new TypeError("Invalid argument type for 'vocab'. Expected 'Array<string>', but '".concat(_typeof(vocab), "' was given."));
+    if (vocab && !vocab instanceof Array) throw new TypeError("Invalid argument type for 'vocab'. Expected 'string[]', but '".concat(_typeof(vocab), "' was given."));
 
     _classPrivateFieldSet(this, _tf, _tf2);
 
@@ -185,7 +185,7 @@ var TextVectorizer = /*#__PURE__*/function () {
     /**
      * Builds vocabulary (if not specified) and vocabulary
      *  map
-     * @param {Array<Array<string>>} X - Array of
+     * @param {string[][]} X - Array of
      *  tokenized texts.
      * @returns {TextVectorizer} self instance
      */
@@ -209,9 +209,9 @@ var TextVectorizer = /*#__PURE__*/function () {
     }
     /**
      * Vectorizes the given dataset.
-     * @param {Array<Array<string>>} X - Array of
+     * @param {string[][]} X - Array of
      *  tokenized texts.
-     * @returns {Array<Array<number>>} TF-IDF matrix.
+     * @returns {number[][]} TF-IDF matrix.
      */
 
   }, {
@@ -284,9 +284,9 @@ var TextVectorizer = /*#__PURE__*/function () {
     }
     /**
      * Convenience method for #fit + #transform
-     * @param {Array<Array<string>>} X - Array of
+     * @param {string[][]} X - Array of
      *  tokenized texts.
-     * @returns {Array<Array<number>>} TF-IDF matrix.
+     * @returns {number[][]} TF-IDF matrix.
      */
 
   }, {
@@ -295,9 +295,10 @@ var TextVectorizer = /*#__PURE__*/function () {
       return this.fit(X).transform(X);
     }
     /**
-     * @param {Array<Array<string>>} X - Array of
+     * @param {string[][]} X - Array of
      *  tokenized texts.
-     * @returns {Array<Array<number>>} TF matrix (raw).
+     * @returns {number[][]} TF matrix (raw).
+     * @private
      */
 
   }, {
@@ -307,7 +308,7 @@ var TextVectorizer = /*#__PURE__*/function () {
      * @typedef {Object} TextVectorizerModel
      * @property {string} tf - TFMetrics value.
      * @property {string} idf - IDFMetrics value.
-     * @property {Array<string>|null} vocabulary - Vocabulary.
+     * @property {string[]|null} vocabulary - Vocabulary.
      * @property {object|null} vocabulary_map - Vocabulary map
      *  object.
      * @property {boolean} isFitted - A property which

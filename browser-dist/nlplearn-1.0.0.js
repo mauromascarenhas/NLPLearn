@@ -60,7 +60,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 /**
  * Sums array elements and returns min(sum, 1).
- * @param {Array<number>} arr - Array of numbers.
+ * @param {number[]} arr - Array of numbers.
  * @returns {number} sum of the array's elements
  *  of 1 if sum <= 0.
  */
@@ -76,8 +76,8 @@ function safeSum(arr) {
 /**
  * Similar to "cosine" but considering the
  *   possibility of |v1| = 0 or |v2| = 0.
- * @param {Array<number>} v1 - First vector.
- * @param {Array<number>} v2 - Second vector.
+ * @param {number[]} v1 - First vector.
+ * @param {number[]} v2 - Second vector.
  * @returns {number} the cosine distance.
  */
 
@@ -150,9 +150,9 @@ var _transformTest = /*#__PURE__*/new WeakSet();
 var _applyDecision = /*#__PURE__*/new WeakSet();
 
 var NLPClassifier = /*#__PURE__*/function () {
-  /** @type {Array<Array<number>>} */
+  /** @type {number[][]} */
 
-  /** @type {Array<any>} */
+  /** @type {any[]} */
 
   /**
    * Creates an instance of NLPClassifier.
@@ -254,9 +254,9 @@ var NLPClassifier = /*#__PURE__*/function () {
      * Generates classification coefficients and classes
      *  for current instance.
      * It must always be called before "predict".
-     * @param {Array<Array<number>>} X - Document-Term matrix
+     * @param {number[][]} X - Document-Term matrix
      *  (vectorized text).
-     * @param {Array<any>} Y - Correspondent classification
+     * @param {any[]} Y - Correspondent classification
      *  array.
      * @returns {NLPClassifier} reference to current
      *  classifier.
@@ -267,10 +267,10 @@ var NLPClassifier = /*#__PURE__*/function () {
     value: function fit(X, Y) {
       if (!(X instanceof Array && X[0] && X[0] instanceof Array && typeof X[0][0] === "number")) throw new TypeError("'X' must be a 2d numeric array.");
       if (!(Y instanceof Array)) throw new TypeError("'Y' must be a 1d array.");
-      /** @type {Array<Array<number>>} */
+      /** @type {number[][]} */
 
       var x = (0, _copy.deepCopy)(X);
-      /** @type {Array<any>} */
+      /** @type {any[]} */
 
       var y = (0, _copy.deepCopy)(Y);
 
@@ -279,7 +279,7 @@ var NLPClassifier = /*#__PURE__*/function () {
       for (var i = 0; i < y.length; ++i) {
         y[i] = _classPrivateFieldGet(this, _classes).indexOf(y[i]);
       }
-      /** @type {Array<Array<number>>} */
+      /** @type {number[][]} */
 
 
       var tf;
@@ -326,9 +326,9 @@ var NLPClassifier = /*#__PURE__*/function () {
     }
     /**
      * Performs the prediction for the given input.
-     * @param {Array<Array<number>>} X - Document-Term matrix
+     * @param {number[][]} X - Document-Term matrix
      *  (vectorized text).
-     * @returns {Array<any>} an array of predicted values (classes).
+     * @returns {any[]} an array of predicted values (classes).
      */
 
   }, {
@@ -352,9 +352,9 @@ var NLPClassifier = /*#__PURE__*/function () {
      *  returns a matrix of probability [0,1] for each
      *  document/class.
      * The greater the value, the most similar it is;
-     * @param {Array<Array<number>>} X - Document-Term matrix
+     * @param {number[][]} X - Document-Term matrix
      *  (vectorized text).
-     * @returns {Array<Array<any>>} a matrix of match probability
+     * @returns {any[][]} a matrix of match probability
      *  for each document.
      */
 
@@ -394,9 +394,10 @@ var NLPClassifier = /*#__PURE__*/function () {
     /**
      * Fits the given document-term matrix to the specified
      *  metric (average).
-     * @param {Array<Array<number>>} x - Document-term matrix.
-     * @param {Array<any>} y - Classes (map).
-     * @returns {Array<Array<number>>} the TF matrix (average).
+     * @param {number[][]} x - Document-term matrix.
+     * @param {any[]} y - Classes (map).
+     * @returns {number[][]} the TF matrix (average).
+     * @private
      */
 
   }, {
@@ -406,10 +407,10 @@ var NLPClassifier = /*#__PURE__*/function () {
      * @typedef {Object} NLPClassifierModel
      * @property {string} idf - IDFMetrics value.
      * @property {string} mtr - CLFMetrics value.
-     * @property {Array<Array<number>>|null} coef - Fitted
+     * @property {number[][]|null} coef - Fitted
      *  classifier coefficients (when available).
      * @property {string} dist - DistMetrics value.
-     * @property {Array<any>|null} classes - Fitted
+     * @property {any[]|null} classes - Fitted
      *  classifier classes (when available).
      * @property {boolean} isFitted - A property which
      *  specifies whether the classifier is fitted or not.
@@ -822,8 +823,9 @@ var RSLPStemmer = /*#__PURE__*/function () {
     /**
      * Applies rule for the given word
      * @param {string} word - word (or part) to be stemmed.
-     * @param {Array<Array<any>>} rules - Array of rules.
+     * @param {any[][]} rules - Array of rules.
      * @returns {string} word part (after applying rule).
+     * @private
      */
 
   }]);
@@ -1053,7 +1055,7 @@ var NaiveWordTokenizer = /*#__PURE__*/function () {
    * Tokenizes the given text/document in
    *  word level.
    * @param {string} text - Text/document.
-   * @returns {Array<string>} the tokenized version
+   * @returns {string[]} the tokenized version
    *  of the given text.
    */
 
@@ -1202,7 +1204,7 @@ var _transformFreq = /*#__PURE__*/new WeakSet();
 var _transformIDF = /*#__PURE__*/new WeakSet();
 
 var TextVectorizer = /*#__PURE__*/function () {
-  /** @type {Array<string>} */
+  /** @type {string[]} */
 
   /** @type {object} */
 
@@ -1210,7 +1212,7 @@ var TextVectorizer = /*#__PURE__*/function () {
    * Creates an instance of TextVectorizer class
    * @param {string} tf - Term-Frequency
    * @param {string} idf - Inverse Document-Frequency
-   * @param {Array<string>} vocab - Vocabulary
+   * @param {string[]} vocab - Vocabulary
    */
   function TextVectorizer() {
     var _tf2 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : TFMetrics.RAW;
@@ -1257,7 +1259,7 @@ var TextVectorizer = /*#__PURE__*/function () {
 
     if (!_tf2 in TFMetrics) throw new Error("Invalid value for 'tf'.  It must be one of the object values available at TFMetrics object.");
     if (!idf in IDFMetrics) throw new Error("Invalid value for 'idf'.  It must be one of the object values available at IDFMetrics object.");
-    if (vocab && !vocab instanceof Array) throw new TypeError("Invalid argument type for 'vocab'. Expected 'Array<string>', but '".concat(_typeof(vocab), "' was given."));
+    if (vocab && !vocab instanceof Array) throw new TypeError("Invalid argument type for 'vocab'. Expected 'string[]', but '".concat(_typeof(vocab), "' was given."));
 
     _classPrivateFieldSet(this, _tf, _tf2);
 
@@ -1284,7 +1286,7 @@ var TextVectorizer = /*#__PURE__*/function () {
     /**
      * Builds vocabulary (if not specified) and vocabulary
      *  map
-     * @param {Array<Array<string>>} X - Array of
+     * @param {string[][]} X - Array of
      *  tokenized texts.
      * @returns {TextVectorizer} self instance
      */
@@ -1308,9 +1310,9 @@ var TextVectorizer = /*#__PURE__*/function () {
     }
     /**
      * Vectorizes the given dataset.
-     * @param {Array<Array<string>>} X - Array of
+     * @param {string[][]} X - Array of
      *  tokenized texts.
-     * @returns {Array<Array<number>>} TF-IDF matrix.
+     * @returns {number[][]} TF-IDF matrix.
      */
 
   }, {
@@ -1383,9 +1385,9 @@ var TextVectorizer = /*#__PURE__*/function () {
     }
     /**
      * Convenience method for #fit + #transform
-     * @param {Array<Array<string>>} X - Array of
+     * @param {string[][]} X - Array of
      *  tokenized texts.
-     * @returns {Array<Array<number>>} TF-IDF matrix.
+     * @returns {number[][]} TF-IDF matrix.
      */
 
   }, {
@@ -1394,9 +1396,10 @@ var TextVectorizer = /*#__PURE__*/function () {
       return this.fit(X).transform(X);
     }
     /**
-     * @param {Array<Array<string>>} X - Array of
+     * @param {string[][]} X - Array of
      *  tokenized texts.
-     * @returns {Array<Array<number>>} TF matrix (raw).
+     * @returns {number[][]} TF matrix (raw).
+     * @private
      */
 
   }, {
@@ -1406,7 +1409,7 @@ var TextVectorizer = /*#__PURE__*/function () {
      * @typedef {Object} TextVectorizerModel
      * @property {string} tf - TFMetrics value.
      * @property {string} idf - IDFMetrics value.
-     * @property {Array<string>|null} vocabulary - Vocabulary.
+     * @property {string[]|null} vocabulary - Vocabulary.
      * @property {object|null} vocabulary_map - Vocabulary map
      *  object.
      * @property {boolean} isFitted - A property which
@@ -2026,6 +2029,7 @@ var TextProcessor = /*#__PURE__*/function () {
      * Removes "extra" spaces.
      * @param {string} txt - Text to be normalized.
      * @returns {string} text with normalized spaces.
+     * @private
      */
 
   }, {
