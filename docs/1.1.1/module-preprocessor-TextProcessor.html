@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Class: TextVectorizer | NLPLearn 1.1.0</title>
+    <title>Class: TextProcessor | NLPLearn 1.1.1</title>
 
     <script src="./scripts/prettify/prettify.js"> </script>
     <script src="./scripts/prettify/lang-css.js"> </script>
@@ -21,7 +21,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Class: TextVectorizer</h1>
+    <h1 class="page-title">Class: TextProcessor</h1>
 
     
 
@@ -33,9 +33,10 @@
 <header>
     
         <h2><span class="attribs"><span class="type-signature"></span></span>
-            <span class="ancestors"><a href="module-vectorizer.html">vectorizer</a>~</span>TextVectorizer<span class="signature">(tf, idf, vocab)</span><span class="type-signature"></span></h2>
+            <span class="ancestors"><a href="module-preprocessor.html">preprocessor</a>~</span>TextProcessor<span class="signature">(normSpacing, normCase, trimSpaces, stripAccents, tokenize, removeNumbers, stopwords, stemmerType)</span><span class="type-signature"></span></h2>
         
-            <div class="class-description"><p>Utility class used for text vectorization purposes.</p></div>
+            <div class="class-description"><p>Convenience class which provides a text preprocessing pipeline
+with predefined (and customizable) steps.</p></div>
         
     
 </header>
@@ -50,7 +51,7 @@
     
 
     
-    <h4 class="name" id="TextVectorizer"><span class="type-signature"></span>new TextVectorizer<span class="signature">(tf, idf, vocab)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="TextProcessor"><span class="type-signature"></span>new TextProcessor<span class="signature">(normSpacing, normCase, trimSpaces, stripAccents, tokenize, removeNumbers, stopwords, stemmerType)</span><span class="type-signature"></span></h4>
     
 
     
@@ -58,7 +59,7 @@
 
 
 <div class="description">
-    <p>Creates an instance of TextVectorizer class</p>
+    <p>Creates an instance of TextProcessor.</p>
 </div>
 
 
@@ -96,13 +97,42 @@
 
         <tr>
             
-                <td class="name"><code>tf</code></td>
+                <td class="name"><code>normSpacing</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">string</span>
+<span class="param-type">boolean</span>
+
+
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                    true
+                
+                </td>
+            
+
+            <td class="description last"><p>Normalize extra spaces.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>normCase</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">TextCase</span>
 
 
             
@@ -116,20 +146,20 @@
                 </td>
             
 
-            <td class="description last"><p>Term-Frequency</p></td>
+            <td class="description last"><p>Normalize text case.</p></td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>idf</code></td>
+                <td class="name"><code>trimSpaces</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">string</span>
+<span class="param-type">boolean</span>
 
 
             
@@ -140,17 +170,106 @@
             
                 <td class="default">
                 
+                    true
+                
                 </td>
             
 
-            <td class="description last"><p>Inverse Document-Frequency</p></td>
+            <td class="description last"><p>Removes initial and ending spaces.</p></td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>vocab</code></td>
+                <td class="name"><code>stripAccents</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                    false
+                
+                </td>
+            
+
+            <td class="description last"><p>Removes accents.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>tokenize</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                    true
+                
+                </td>
+            
+
+            <td class="description last"><p>Tokenize text.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>removeNumbers</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                    false
+                
+                </td>
+            
+
+            <td class="description last"><p>Ignore numbers.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>stopwords</code></td>
             
 
             <td class="type">
@@ -167,12 +286,37 @@
             
                 <td class="default">
                 
-                    null
+                </td>
+            
+
+            <td class="description last"><p>Stoplist.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>stemmerType</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">StemmerType</span>
+
+
+            
+            </td>
+
+            
+
+            
+                <td class="default">
                 
                 </td>
             
 
-            <td class="description last"><p>Vocabulary</p></td>
+            <td class="description last"><p>Stemmer type.</p></td>
         </tr>
 
     
@@ -213,7 +357,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="preprocessing_vectorizer.js.html">preprocessing/vectorizer.js</a>, <a href="preprocessing_vectorizer.js.html#line34">line 34</a>
+        <a href="utils_preprocessor.js.html">utils/preprocessor.js</a>, <a href="utils_preprocessor.js.html#line44">line 44</a>
     </li></ul></dd>
     
 
@@ -269,7 +413,7 @@
     
 
     
-    <h4 class="name" id=".fromModel"><span class="type-signature">(static) </span>fromModel<span class="signature">(model)</span><span class="type-signature"> &rarr; {TextVectorizer}</span></h4>
+    <h4 class="name" id=".fromModel"><span class="type-signature">(static) </span>fromModel<span class="signature">(model)</span><span class="type-signature"> &rarr; {TextProcessor}</span></h4>
     
 
     
@@ -277,8 +421,8 @@
 
 
 <div class="description">
-    <p>Convenience method for converting a valid TextVectorizerModel
-into a TextVectorizer object instance.</p>
+    <p>Convenience method for converting a valid TextProcessorModel
+into a TextProcessor object instance.</p>
 </div>
 
 
@@ -320,7 +464,7 @@ into a TextVectorizer object instance.</p>
             <td class="type">
             
                 
-<span class="param-type">TextVectorizerModel</span>
+<span class="param-type">TextProcessorModel</span>
 
 
             
@@ -330,7 +474,7 @@ into a TextVectorizer object instance.</p>
 
             
 
-            <td class="description last"><p>TextVectorizer
+            <td class="description last"><p>TextProcessor
 exported model.</p></td>
         </tr>
 
@@ -372,7 +516,7 @@ exported model.</p></td>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="preprocessing_vectorizer.js.html">preprocessing/vectorizer.js</a>, <a href="preprocessing_vectorizer.js.html#line264">line 264</a>
+        <a href="utils_preprocessor.js.html">utils/preprocessor.js</a>, <a href="utils_preprocessor.js.html#line202">line 202</a>
     </li></ul></dd>
     
 
@@ -401,7 +545,7 @@ exported model.</p></td>
 
         
 <div class="param-desc">
-    <p>a TextVectorizer instance.</p>
+    <p>a TextProcessor instance.</p>
 </div>
 
 
@@ -412,7 +556,7 @@ exported model.</p></td>
     </dt>
     <dd>
         
-<span class="param-type">TextVectorizer</span>
+<span class="param-type">TextProcessor</span>
 
 
     </dd>
@@ -430,7 +574,7 @@ exported model.</p></td>
     
 
     
-    <h4 class="name" id="fit"><span class="type-signature"></span>fit<span class="signature">(X)</span><span class="type-signature"> &rarr; {TextVectorizer}</span></h4>
+    <h4 class="name" id="fit"><span class="type-signature"></span>fit<span class="signature">(X)</span><span class="type-signature"> &rarr; {TextProcessor}</span></h4>
     
 
     
@@ -438,8 +582,7 @@ exported model.</p></td>
 
 
 <div class="description">
-    <p>Builds vocabulary (if not specified) and vocabulary
-map</p>
+    <p>Stub method (for pipeline compatibility purposes)</p>
 </div>
 
 
@@ -481,7 +624,7 @@ map</p>
             <td class="type">
             
                 
-<span class="param-type">Array.&lt;Array.&lt;string>></span>
+<span class="param-type">Array.&lt;string></span>
 
 
             
@@ -491,8 +634,7 @@ map</p>
 
             
 
-            <td class="description last"><p>Array of
-tokenized texts.</p></td>
+            <td class="description last"><p>2d text array.</p></td>
         </tr>
 
     
@@ -533,7 +675,7 @@ tokenized texts.</p></td>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="preprocessing_vectorizer.js.html">preprocessing/vectorizer.js</a>, <a href="preprocessing_vectorizer.js.html#line71">line 71</a>
+        <a href="utils_preprocessor.js.html">utils/preprocessor.js</a>, <a href="utils_preprocessor.js.html#line89">line 89</a>
     </li></ul></dd>
     
 
@@ -562,7 +704,7 @@ tokenized texts.</p></td>
 
         
 <div class="param-desc">
-    <p>self instance</p>
+    <p>current instance.</p>
 </div>
 
 
@@ -573,7 +715,7 @@ tokenized texts.</p></td>
     </dt>
     <dd>
         
-<span class="param-type">TextVectorizer</span>
+<span class="param-type">TextProcessor</span>
 
 
     </dd>
@@ -591,7 +733,7 @@ tokenized texts.</p></td>
     
 
     
-    <h4 class="name" id="fitTransform"><span class="type-signature"></span>fitTransform<span class="signature">(X)</span><span class="type-signature"> &rarr; {Array.&lt;Array.&lt;number>>}</span></h4>
+    <h4 class="name" id="fitTransform"><span class="type-signature"></span>fitTransform<span class="signature">(X)</span><span class="type-signature"> &rarr; {Array.&lt;string>|Array.&lt;Array.&lt;string>>}</span></h4>
     
 
     
@@ -599,7 +741,8 @@ tokenized texts.</p></td>
 
 
 <div class="description">
-    <p>Convenience method for #fit + #transform</p>
+    <p>Ocerloaded stub method (for pipeline compatibility purposes).
+Behaves the same as if calling &quot;this.transform()&quot;.</p>
 </div>
 
 
@@ -641,7 +784,7 @@ tokenized texts.</p></td>
             <td class="type">
             
                 
-<span class="param-type">Array.&lt;Array.&lt;string>></span>
+<span class="param-type">Array.&lt;string></span>
 
 
             
@@ -651,8 +794,7 @@ tokenized texts.</p></td>
 
             
 
-            <td class="description last"><p>Array of
-tokenized texts.</p></td>
+            <td class="description last"><p>2d text array.</p></td>
         </tr>
 
     
@@ -693,7 +835,7 @@ tokenized texts.</p></td>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="preprocessing_vectorizer.js.html">preprocessing/vectorizer.js</a>, <a href="preprocessing_vectorizer.js.html#line116">line 116</a>
+        <a href="utils_preprocessor.js.html">utils/preprocessor.js</a>, <a href="utils_preprocessor.js.html#line140">line 140</a>
     </li></ul></dd>
     
 
@@ -722,7 +864,7 @@ tokenized texts.</p></td>
 
         
 <div class="param-desc">
-    <p>TF-IDF matrix.</p>
+    <p>the transformed text.</p>
 </div>
 
 
@@ -733,7 +875,10 @@ tokenized texts.</p></td>
     </dt>
     <dd>
         
-<span class="param-type">Array.&lt;Array.&lt;number>></span>
+<span class="param-type">Array.&lt;string></span>
+|
+
+<span class="param-type">Array.&lt;Array.&lt;string>></span>
 
 
     </dd>
@@ -751,146 +896,7 @@ tokenized texts.</p></td>
     
 
     
-    <h4 class="name" id="loadModel"><span class="type-signature"></span>loadModel<span class="signature">(model)</span><span class="type-signature"></span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    <p>Loads TextVectorizerModel's data into current
-instance.</p>
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>model</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">TextVectorizerModel</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>TextVectorizer
-exported model.</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="preprocessing_vectorizer.js.html">preprocessing/vectorizer.js</a>, <a href="preprocessing_vectorizer.js.html#line252">line 252</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="toModel"><span class="type-signature"></span>toModel<span class="signature">()</span><span class="type-signature"> &rarr; {TextVectorizerModel}</span></h4>
+    <h4 class="name" id="toModel"><span class="type-signature"></span>toModel<span class="signature">()</span><span class="type-signature"> &rarr; {TextProcessorModel}</span></h4>
     
 
     
@@ -942,7 +948,7 @@ exported model.</p></td>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="preprocessing_vectorizer.js.html">preprocessing/vectorizer.js</a>, <a href="preprocessing_vectorizer.js.html#line274">line 274</a>
+        <a href="utils_preprocessor.js.html">utils/preprocessor.js</a>, <a href="utils_preprocessor.js.html#line211">line 211</a>
     </li></ul></dd>
     
 
@@ -978,7 +984,7 @@ exported model.</p></td>
     </dt>
     <dd>
         
-<span class="param-type">TextVectorizerModel</span>
+<span class="param-type">TextProcessorModel</span>
 
 
     </dd>
@@ -996,7 +1002,7 @@ exported model.</p></td>
     
 
     
-    <h4 class="name" id="transform"><span class="type-signature"></span>transform<span class="signature">(X)</span><span class="type-signature"> &rarr; {Array.&lt;Array.&lt;number>>}</span></h4>
+    <h4 class="name" id="transform"><span class="type-signature"></span>transform<span class="signature">(X)</span><span class="type-signature"> &rarr; {Array.&lt;string>|Array.&lt;Array.&lt;string>>}</span></h4>
     
 
     
@@ -1004,7 +1010,7 @@ exported model.</p></td>
 
 
 <div class="description">
-    <p>Vectorizes the given dataset.</p>
+    <p>Applies the requested transformations to the given document set.</p>
 </div>
 
 
@@ -1046,7 +1052,7 @@ exported model.</p></td>
             <td class="type">
             
                 
-<span class="param-type">Array.&lt;Array.&lt;string>></span>
+<span class="param-type">Array.&lt;string></span>
 
 
             
@@ -1056,8 +1062,7 @@ exported model.</p></td>
 
             
 
-            <td class="description last"><p>Array of
-tokenized texts.</p></td>
+            <td class="description last"><p>2d text array.</p></td>
         </tr>
 
     
@@ -1098,7 +1103,7 @@ tokenized texts.</p></td>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="preprocessing_vectorizer.js.html">preprocessing/vectorizer.js</a>, <a href="preprocessing_vectorizer.js.html#line86">line 86</a>
+        <a href="utils_preprocessor.js.html">utils/preprocessor.js</a>, <a href="utils_preprocessor.js.html#line96">line 96</a>
     </li></ul></dd>
     
 
@@ -1127,7 +1132,7 @@ tokenized texts.</p></td>
 
         
 <div class="param-desc">
-    <p>TF-IDF matrix.</p>
+    <p>the transformed text.</p>
 </div>
 
 
@@ -1138,7 +1143,10 @@ tokenized texts.</p></td>
     </dt>
     <dd>
         
-<span class="param-type">Array.&lt;Array.&lt;number>></span>
+<span class="param-type">Array.&lt;string></span>
+|
+
+<span class="param-type">Array.&lt;Array.&lt;string>></span>
 
 
     </dd>
@@ -1172,7 +1180,7 @@ tokenized texts.</p></td>
 <br class="clear">
 
 <footer>
-    Documentation for nlplearn:1.1.0 generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.10</a> on Mon Feb 21 2022 18:06:29 GMT-0300 (Horário Padrão de Brasília)
+    Documentation for nlplearn:1.1.1 generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.10</a> on Mon Feb 21 2022 18:17:35 GMT-0300 (Horário Padrão de Brasília)
 </footer>
 
 <script> prettyPrint(); </script>

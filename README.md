@@ -71,17 +71,17 @@ The usage in browser is quite similar to CommonJS (thanks to Babel + Browserify)
 
             <!-- jsDelivr -->
             <!-- Development build -->
-            <script type="application/javascript" src="https://cdn.jsdelivr.net/npm/nlplearn@1.1.0/browser-dist/nlplearn-1.1.0.js" defer></script>
+            <script type="application/javascript" src="https://cdn.jsdelivr.net/npm/nlplearn@1.1.1/browser-dist/nlplearn-1.1.1.js" defer></script>
             <!-- Production build -->
-            <script type="application/javascript" src="https://cdn.jsdelivr.net/npm/nlplearn@1.1.0/browser-dist/nlplearn-1.1.0.min.js" defer></script>
+            <script type="application/javascript" src="https://cdn.jsdelivr.net/npm/nlplearn@1.1.1/browser-dist/nlplearn-1.1.1.min.js" defer></script>
 
     2. **UNPKG**
 
             <!-- UNPKG -->
             <!-- Development build -->
-            <script type="application/javascript" src="https://unpkg.com/nlplearn@1.1.0/browser-dist/nlplearn-1.1.0.js" defer></script>
+            <script type="application/javascript" src="https://unpkg.com/nlplearn@1.1.1/browser-dist/nlplearn-1.1.1.js" defer></script>
             <!-- Production build -->
-            <script type="application/javascript" src="https://unpkg.com/nlplearn@1.1.0/browser-dist/nlplearn-1.1.0.min.js" defer></script>
+            <script type="application/javascript" src="https://unpkg.com/nlplearn@1.1.1/browser-dist/nlplearn-1.1.1.min.js" defer></script>
 
 2. Another option is to copy a version of nlplearn available in [the library repository](https://github.com/mauromascarenhas/NLPLearn/tree/main/browser-dist) to your server and add the following tag to the `<head>...</head>` section of your website:
 
