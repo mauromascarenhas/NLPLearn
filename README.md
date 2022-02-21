@@ -63,16 +63,29 @@ Since the class recomendation is to import from "index.js", as previously demons
 
 ### Browser (Vanilla JS)
 
-The usage in browser is quite similar to CommonJS (thanks to Babel + Browserify). However, you must copy a version of nlplearn available in [the library repository](https://github.com/mauromascarenhas/NLPLearn/tree/main/browser-dist) to your server and add the following tag to the `<head>...</head>` section of your website:
+The usage in browser is quite similar to CommonJS (thanks to Babel + Browserify). However, you will have to add one of the following snippets to the `<head>...</head>` section of your website:
 
-    <script type="application/javascript" src="./path/to/nlplearn/nlplearn-<version>[.min].js" defer></script>
+1. Using one of the CDN providers (most recommended):
 
-Another option (and most recommended) is include via CDN:
+    1. **jsDelivr**
 
-    <!-- Development build -->
-    <script type="application/javascript" src="https://unpkg.com/nlplearn@1.0.0/browser-dist/nlplearn-1.0.0.js" defer></script>
-    <!-- Production build -->
-    <script type="application/javascript" src="https://unpkg.com/nlplearn@1.0.0/browser-dist/nlplearn-1.0.0.min.js" defer></script>
+            <!-- jsDelivr -->
+            <!-- Development build -->
+            <script type="application/javascript" src="https://cdn.jsdelivr.net/npm/nlplearn@1.1.0/browser-dist/nlplearn-1.1.0.js" defer></script>
+            <!-- Production build -->
+            <script type="application/javascript" src="https://cdn.jsdelivr.net/npm/nlplearn@1.1.0/browser-dist/nlplearn-1.1.0.min.js" defer></script>
+
+    2. **UNPKG**
+
+            <!-- UNPKG -->
+            <!-- Development build -->
+            <script type="application/javascript" src="https://unpkg.com/nlplearn@1.1.0/browser-dist/nlplearn-1.1.0.js" defer></script>
+            <!-- Production build -->
+            <script type="application/javascript" src="https://unpkg.com/nlplearn@1.1.0/browser-dist/nlplearn-1.1.0.min.js" defer></script>
+
+2. Another option is to copy a version of nlplearn available in [the library repository](https://github.com/mauromascarenhas/NLPLearn/tree/main/browser-dist) to your server and add the following tag to the `<head>...</head>` section of your website:
+
+        <script type="application/javascript" src="./path/to/nlplearn/nlplearn-<version>[.min].js" defer></script>
 
 Available versions:
 

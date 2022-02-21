@@ -2,14 +2,18 @@ Vue.createApp({
     name: "HomeView",
     data(){
         return {
-            docVersion: "1.0.0"
+            docVersion: "1.1.0"
         }
     },
     computed: {
         availableVersions(){
             return [
                 {
-                    "name": "NLPLearn 1.0.0 (latest)",
+                    "name": "NLPLearn 1.1.0 (latest)",
+                    "version": "1.1.0"
+                },
+                {
+                    "name": "NLPLearn 1.0.0",
                     "version": "1.0.0"
                 }
             ]

@@ -673,7 +673,14 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.vectorizer = exports.tokenization = exports.stopwords = exports.stemmer = exports.preprocessor = exports.nltksw = exports.distance = exports.copy = exports.classifier = void 0;
+exports.distance = exports.copy = exports.classifier = void 0;
+Object.defineProperty(exports, "nltksw", {
+  enumerable: true,
+  get: function get() {
+    return _stopwords2["default"];
+  }
+});
+exports.vectorizer = exports.tokenization = exports.stopwords = exports.stemmer = exports.preprocessor = void 0;
 
 var _copy = _interopRequireWildcard(require("./utils/copy"));
 
@@ -691,9 +698,7 @@ var _classifier = _interopRequireWildcard(require("./classifier/nlpclassifier"))
 
 exports.classifier = _classifier;
 
-var _nltksw = _interopRequireWildcard(require("./nltk-data/stopwords.json"));
-
-exports.nltksw = _nltksw;
+var _stopwords2 = _interopRequireDefault(require("./nltk-data/stopwords.json"));
 
 var _stemmer = _interopRequireWildcard(require("./preprocessing/stemmer"));
 
@@ -710,6 +715,8 @@ exports.vectorizer = _vectorizer;
 var _tokenization = _interopRequireWildcard(require("./preprocessing/tokenization"));
 
 exports.tokenization = _tokenization;
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
 
