@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Home | NLPLearn 1.1.0</title>
+
+    <script src="./scripts/prettify/prettify.js"> </script>
+    <script src="./scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link rel="manifest" href="./site.webmanifest">
+    <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png">
+    <link type="text/css" rel="stylesheet" href="./styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="./styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    
+
+    
+
+
+
+    
+
+
+
+
+
+
+
+
+
+    
+
+
+    <section>
+        <article><h1>NLPLearn</h1>
+<p>Natural Language Processing Toolkit for JavaScript.</p>
+<h2>About NLPLearn</h2>
+<p>NLPLearn is a natural language processing library focused on client-side operations, providing simple text processing tools, such as text tokenizer, stemmers, vectorizer etc. It includes a set of utility resources and a classifier as well.</p>
+<h2>Usage</h2>
+<p>The objective of this library is to be used for different purposes and contexts. So, it has been made available in three different versions:</p>
+<ul>
+<li>ES6 modules: for newer projects (with better intellisense support);</li>
+<li>CommonJS: The same as the above, but transpiled for compatibility with older projects;</li>
+<li>Browser (useful for simple client-side apps): Browser-compatible Vanilla JS code (debugging + minified versions).</li>
+</ul>
+<p>Furthermore, it is important to state that some classes have import/export utilities that let you to export instances of classifiers, vectorizers and others, to a plain JS object that can be stored as strings (JSON) so as to be retrieved and converted to an instance of its original class afterwards (check code docs for more details). Generic example:</p>
+<pre><code>repo.save(&quot;my-model&quot;, model.toModel());
+// ...
+let modelClone = ModelClass.fromModel(repo.get(&quot;my-model&quot;));
+</code></pre>
+<h3>ES6 Modules</h3>
+<p>Although the &quot;distribution&quot; is in CommonJS, it is possible to import components which have been written in newer syntax. All you have to do is to add &quot;/src&quot; to your import:</p>
+<pre><code>import NLPLearn from &quot;nlplearn/src&quot;
+</code></pre>
+<p>Should you want to use object destructing:</p>
+<pre><code>import { stemmer } from &quot;nlplearn/src&quot;;
+const { PorterStemmer } = stemmer;
+// must return &quot;close&quot;
+console.log(PorterStemmer.stem(&quot;closing&quot;));
+</code></pre>
+<p>Another advantage of using this sort of import is that it is possible (and way simpler) to import a single resource directly from the source module (it also saves memory, since you won't be importing unused resources):</p>
+<pre><code>import { PorterStemmer } from &quot;nlplearn/src/preprocessing/stemmer&quot;;
+// continue...
+</code></pre>
+<h3>CommonJS</h3>
+<p>Since the &quot;distrubution&quot; version of this library is already in CommonJS, all you have to do to access its modules is the following:</p>
+<pre><code>const NLPLearn = require(&quot;nlplearn&quot;);
+// result must be 1
+console.log(NLPLearn.distance.cosine([0, 1], [1, 0]));
+</code></pre>
+<p>Should you want to use only specific resources:</p>
+<pre><code>const distance = require(&quot;nlplearn&quot;).distance;
+// result must be 1
+console.log(distance.cosine([0, 1], [1, 0]));
+
+// in the following snippet, the result must be 1 as well
+const cosine = distance.cosine;
+console.log(cosine([0, 1], [1, 0]));
+</code></pre>
+<p>Since the class recomendation is to import from &quot;index.js&quot;, as previously demonstrated, the importation of a single resource would be a little bit trickier, but is is possible. However, it will be necessary to follow the same directory structure as in ES modules, replacing &quot;/src&quot; by &quot;/dist&quot;:</p>
+<pre><code>const cosine = require(&quot;nlplearn/dist/utils/distance&quot;).cosine;
+// the same as: const cosine = require(&quot;nlplearn&quot;).distance.cosine;
+</code></pre>
+<h3>Browser (Vanilla JS)</h3>
+<p>The usage in browser is quite similar to CommonJS (thanks to Babel + Browserify). However, you will have to add one of the following snippets to the <code>&lt;head&gt;...&lt;/head&gt;</code> section of your website:</p>
+<ol>
+<li>
+<p>Using one of the CDN providers (most recommended):</p>
+<ol>
+<li>
+<p><strong>jsDelivr</strong></p>
+<pre><code> &lt;!-- jsDelivr --&gt;
+ &lt;!-- Development build --&gt;
+ &lt;script type=&quot;application/javascript&quot; src=&quot;https://cdn.jsdelivr.net/npm/nlplearn@1.1.0/browser-dist/nlplearn-1.1.0.js&quot; defer&gt;&lt;/script&gt;
+ &lt;!-- Production build --&gt;
+ &lt;script type=&quot;application/javascript&quot; src=&quot;https://cdn.jsdelivr.net/npm/nlplearn@1.1.0/browser-dist/nlplearn-1.1.0.min.js&quot; defer&gt;&lt;/script&gt;
+</code></pre>
+</li>
+<li>
+<p><strong>UNPKG</strong></p>
+<pre><code> &lt;!-- UNPKG --&gt;
+ &lt;!-- Development build --&gt;
+ &lt;script type=&quot;application/javascript&quot; src=&quot;https://unpkg.com/nlplearn@1.1.0/browser-dist/nlplearn-1.1.0.js&quot; defer&gt;&lt;/script&gt;
+ &lt;!-- Production build --&gt;
+ &lt;script type=&quot;application/javascript&quot; src=&quot;https://unpkg.com/nlplearn@1.1.0/browser-dist/nlplearn-1.1.0.min.js&quot; defer&gt;&lt;/script&gt;
+</code></pre>
+</li>
+</ol>
+</li>
+<li>
+<p>Another option is to copy a version of nlplearn available in <a href="https://github.com/mauromascarenhas/NLPLearn/tree/main/browser-dist">the library repository</a> to your server and add the following tag to the <code>&lt;head&gt;...&lt;/head&gt;</code> section of your website:</p>
+<pre><code> &lt;script type=&quot;application/javascript&quot; src=&quot;./path/to/nlplearn/nlplearn-&lt;version&gt;[.min].js&quot; defer&gt;&lt;/script&gt;
+</code></pre>
+</li>
+</ol>
+<p>Available versions:</p>
+<ul>
+<li>Regular: mostly used for debugging purposes;</li>
+<li>Minified (ends with &quot;.min.js&quot;): meant for use in production - smaller size.</li>
+</ul>
+<p><strong>NB.:</strong> Differently from ES modules and CommonJS, it is not possible to import a single resource.</p>
+<h2>Build</h2>
+<p>Should you want to use this library with recent JS versions (ES6+), the build step will not be necessary. However, if you need to use/integrate with legacy code (CommonJS) or get browser supported versions, everything you have to do is to use one of the following commands:</p>
+<pre><code>&gt; npm run build # Builds for CommonJS and Browser;
+&gt; npm run build:dist # Builds for CommonJS, only;
+&gt; npm run build:browser # Generates a browser-friendly code (must build for CommonJS before);
+&gt; npm run build:browser:reg # Generates a browser-friendly code: for debugging purposes;
+&gt; npm run build:browser:min # Generates a minified browser-friendly code: for production environment.
+</code></pre>
+<h3>Tests</h3>
+<p>The tests files are located into <code>./test</code> directory. So, evertything you have to do so as to perform the automated (unitary) tests is to run:</p>
+<pre><code>&gt; npm run test
+</code></pre>
+<h2>Docs</h2>
+<p>In addition to the static documentation, the source code is completely typed, providing a greater support for code intellisense (tested with JS, only).</p>
+<p>The HTML documentation for this library can be accessed <a href="https://mauromascarenhas.github.io/NLPLearn/">here</a>. It is important to keep in mind that new set of documentation pages is generated for each tagged version. Check the next subtopic so as to learn how to build a &quot;preview&quot; version yourself.</p>
+<h3>Docs generation</h3>
+<p>It is possible to generate the code documentation for the current version by running <code>npm run docs:gen</code> in development environment.</p>
+<p>Finally, should you want to open it in browser, there is a convenience script which creates a local server and opens the generated documentation in browser:</p>
+<pre><code>&gt; npm run docs:serve # Serves &quot;home&quot; docs page
+&gt; nom run docs:serve:current # Serves code docs for current version
+</code></pre>
+<h2>Sources and development</h2>
+<p>You can access the source code and contribute to the development of this library through our <a href="https://github.com/mauromascarenhas/NLPLearn">repository available at Github</a>. It is available under Mozilla Public Licence v2.0 (<a href="https://www.mozilla.org/en-US/MPL/2.0/">MPL-2.0</a>).</p></article>
+    </section>
+
+
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="../">Index</a></h2><h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-classifier.html">classifier</a></li><li><a href="module-copy.html">copy</a></li><li><a href="module-distance.html">distance</a></li><li><a href="module-preprocessor.html">preprocessor</a></li><li><a href="module-stemmer.html">stemmer</a></li><li><a href="module-stopwords.html">stopwords</a></li><li><a href="module-tokenization.html">tokenization</a></li><li><a href="module-vectorizer.html">vectorizer</a></li></ul><h3>Classes</h3><ul><li><a href="module-classifier-NLPClassifier.html">NLPClassifier</a></li><li><a href="module-preprocessor-TextProcessor.html">TextProcessor</a></li><li><a href="module-stemmer-PorterStemmer.html">PorterStemmer</a></li><li><a href="module-stemmer-RSLPStemmer.html">RSLPStemmer</a></li><li><a href="module-stopwords.StopWords.html">StopWords</a></li><li><a href="module-tokenization-NaiveWordTokenizer.html">NaiveWordTokenizer</a></li><li><a href="module-vectorizer-TextVectorizer.html">TextVectorizer</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation for nlplearn:1.1.0 generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.10</a> on Mon Feb 21 2022 18:06:29 GMT-0300 (Horário Padrão de Brasília)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

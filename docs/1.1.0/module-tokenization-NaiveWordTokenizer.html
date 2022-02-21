@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Class: NaiveWordTokenizer | NLPLearn 1.1.0</title>
+
+    <script src="./scripts/prettify/prettify.js"> </script>
+    <script src="./scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link rel="manifest" href="./site.webmanifest">
+    <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png">
+    <link type="text/css" rel="stylesheet" href="./styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="./styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Class: NaiveWordTokenizer</h1>
+
+    
+
+
+
+
+<section>
+
+<header>
+    
+        <h2><span class="attribs"><span class="type-signature"></span></span>
+            <span class="ancestors"><a href="module-tokenization.html">tokenization</a>~</span>NaiveWordTokenizer<span class="signature">()</span><span class="type-signature"></span></h2>
+        
+            <div class="class-description"><p>Basic text tokenizer (word level) based
+on regular expression rules.
+It provides support to number removal
+(default setting) and filter for small
+words.</p></div>
+        
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+
+    
+    <h2>Constructor</h2>
+    
+
+    
+    <h4 class="name" id="NaiveWordTokenizer"><span class="type-signature"></span>new NaiveWordTokenizer<span class="signature">()</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="preprocessing_tokenization.js.html">preprocessing/tokenization.js</a>, <a href="preprocessing_tokenization.js.html#line15">line 15</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="tokenize"><span class="type-signature"></span>tokenize<span class="signature">(text)</span><span class="type-signature"> &rarr; {Array.&lt;string>}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Tokenizes the given text/document in
+word level.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>text</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Text/document.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="preprocessing_tokenization.js.html">preprocessing/tokenization.js</a>, <a href="preprocessing_tokenization.js.html#line42">line 42</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>the tokenized version
+of the given text.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Array.&lt;string></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="../">Index</a></h2><h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-classifier.html">classifier</a></li><li><a href="module-copy.html">copy</a></li><li><a href="module-distance.html">distance</a></li><li><a href="module-preprocessor.html">preprocessor</a></li><li><a href="module-stemmer.html">stemmer</a></li><li><a href="module-stopwords.html">stopwords</a></li><li><a href="module-tokenization.html">tokenization</a></li><li><a href="module-vectorizer.html">vectorizer</a></li></ul><h3>Classes</h3><ul><li><a href="module-classifier-NLPClassifier.html">NLPClassifier</a></li><li><a href="module-preprocessor-TextProcessor.html">TextProcessor</a></li><li><a href="module-stemmer-PorterStemmer.html">PorterStemmer</a></li><li><a href="module-stemmer-RSLPStemmer.html">RSLPStemmer</a></li><li><a href="module-stopwords.StopWords.html">StopWords</a></li><li><a href="module-tokenization-NaiveWordTokenizer.html">NaiveWordTokenizer</a></li><li><a href="module-vectorizer-TextVectorizer.html">TextVectorizer</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation for nlplearn:1.1.0 generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.10</a> on Mon Feb 21 2022 18:06:29 GMT-0300 (Horário Padrão de Brasília)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
