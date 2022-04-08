@@ -21,7 +21,7 @@
     "docs:serve": "cross-var http-server ./docs/ -o",
     "docs:serve:current": "cross-var http-server ./docs/$npm_package_version -o",
     "types:gen": "npm run clean:types && npm run types:gen:src",
-    "types:gen:src":  "shx cp ./src/index.js ./src/index.d.ts && npx -p typescript tsc src/**/*.js --declaration --allowJs --emitDeclarationOnly",
+    "types:gen:src": "shx cp ./src/index.js ./src/index.d.ts && npx -p typescript tsc src/**/*.js --declaration --allowJs --emitDeclarationOnly",
     "test": "jest"
   },
   "keywords": [

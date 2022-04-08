@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Class: NaiveWordTokenizer | NLPLearn 1.1.1</title>
+    <title>Class: StopWords | NLPLearn 1.1.2</title>
 
     <script src="./scripts/prettify/prettify.js"> </script>
     <script src="./scripts/prettify/lang-css.js"> </script>
@@ -21,7 +21,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Class: NaiveWordTokenizer</h1>
+    <h1 class="page-title">Class: StopWords</h1>
 
     
 
@@ -33,13 +33,10 @@
 <header>
     
         <h2><span class="attribs"><span class="type-signature"></span></span>
-            <span class="ancestors"><a href="module-tokenization.html">tokenization</a>~</span>NaiveWordTokenizer<span class="signature">()</span><span class="type-signature"></span></h2>
+            <span class="ancestors"><a href="module-stopwords.html">stopwords</a>.</span>StopWords<span class="signature">()</span><span class="type-signature"></span></h2>
         
-            <div class="class-description"><p>Basic text tokenizer (word level) based
-on regular expression rules.
-It provides support to number removal
-(default setting) and filter for small
-words.</p></div>
+            <div class="class-description"><p>Class which aggregates methods related
+to stop words retrieval.</p></div>
         
     
 </header>
@@ -54,7 +51,7 @@ words.</p></div>
     
 
     
-    <h4 class="name" id="NaiveWordTokenizer"><span class="type-signature"></span>new NaiveWordTokenizer<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="StopWords"><span class="type-signature"></span>new StopWords<span class="signature">()</span><span class="type-signature"></span></h4>
     
 
     
@@ -102,7 +99,7 @@ words.</p></div>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="preprocessing_tokenization.js.html">preprocessing/tokenization.js</a>, <a href="preprocessing_tokenization.js.html#line15">line 15</a>
+        <a href="preprocessing_stopwords.js.html">preprocessing/stopwords.js</a>, <a href="preprocessing_stopwords.js.html#line15">line 15</a>
     </li></ul></dd>
     
 
@@ -158,7 +155,7 @@ words.</p></div>
     
 
     
-    <h4 class="name" id="tokenize"><span class="type-signature"></span>tokenize<span class="signature">(text)</span><span class="type-signature"> &rarr; {Array.&lt;string>}</span></h4>
+    <h4 class="name" id=".get"><span class="type-signature">(static) </span>get<span class="signature">(lang, source)</span><span class="type-signature"> &rarr; {Array.&lt;string>}</span></h4>
     
 
     
@@ -166,8 +163,10 @@ words.</p></div>
 
 
 <div class="description">
-    <p>Tokenizes the given text/document in
-word level.</p>
+    <p>Retrieves the stop words for the specified
+language.
+Check NLTK's and stopword-iso's documentation
+so as to check for supported languages.</p>
 </div>
 
 
@@ -193,6 +192,8 @@ word level.</p>
         
 
         
+        <th>Default</th>
+        
 
         <th class="last">Description</th>
     </tr>
@@ -203,7 +204,7 @@ word level.</p>
 
         <tr>
             
-                <td class="name"><code>text</code></td>
+                <td class="name"><code>lang</code></td>
             
 
             <td class="type">
@@ -218,8 +219,42 @@ word level.</p>
             
 
             
+                <td class="default">
+                
+                </td>
+            
 
-            <td class="description last"><p>Text/document.</p></td>
+            <td class="description last"><p>ISO language code.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>source</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                    NLTK
+                
+                </td>
+            
+
+            <td class="description last"><p>Stop list source. Valid
+values are either &quot;NLTK&quot; (default) or &quot;ISO&quot;.</p></td>
         </tr>
 
     
@@ -260,7 +295,7 @@ word level.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="preprocessing_tokenization.js.html">preprocessing/tokenization.js</a>, <a href="preprocessing_tokenization.js.html#line42">line 42</a>
+        <a href="preprocessing_stopwords.js.html">preprocessing/stopwords.js</a>, <a href="preprocessing_stopwords.js.html#line30">line 30</a>
     </li></ul></dd>
     
 
@@ -289,8 +324,9 @@ word level.</p>
 
         
 <div class="param-desc">
-    <p>the tokenized version
-of the given text.</p>
+    <p>the stop words array
+for the given language, or undefined, if not
+found.</p>
 </div>
 
 
@@ -335,7 +371,7 @@ of the given text.</p>
 <br class="clear">
 
 <footer>
-    Documentation for nlplearn:1.1.1 generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.10</a> on Mon Feb 21 2022 18:17:35 GMT-0300 (Horário Padrão de Brasília)
+    Documentation for nlplearn:1.1.2 generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.10</a> on Fri Apr 08 2022 12:08:50 GMT-0300 (Horário Padrão de Brasília)
 </footer>
 
 <script> prettyPrint(); </script>

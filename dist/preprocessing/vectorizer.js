@@ -354,7 +354,7 @@ var TextVectorizer = /*#__PURE__*/function () {
     key: "fromModel",
     value: function fromModel(model) {
       var inst = new TextVectorizer(model.tf, model.idf, model.vocabulary);
-      inst.fromModel(model);
+      inst.loadModel(model);
       return inst;
     }
   }]);

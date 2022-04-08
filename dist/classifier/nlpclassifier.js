@@ -457,7 +457,7 @@ var NLPClassifier = /*#__PURE__*/function () {
     key: "fromModel",
     value: function fromModel(model) {
       var inst = new NLPClassifier(model.mtr, model.dist, model.idf);
-      inst.fromModel(model);
+      inst.loadModel(model);
       return inst;
     }
   }]);
