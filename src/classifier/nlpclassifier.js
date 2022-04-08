@@ -437,7 +437,7 @@ class NLPClassifier {
      */
     static fromModel(model){
         let inst = new NLPClassifier(model.mtr, model.dist, model.idf);
-        inst.fromModel(model);
+        inst.loadModel(model);
         return inst;
     }
 

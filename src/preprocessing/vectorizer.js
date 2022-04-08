@@ -263,7 +263,7 @@ class TextVectorizer {
      */
     static fromModel(model){
         let inst = new TextVectorizer(model.tf, model.idf, model.vocabulary);
-        inst.fromModel(model);
+        inst.loadModel(model);
         return inst;
     }
 
